@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 960" width="100%" height="100%">
+  <defs>
+    <!-- Background Linear Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#edf6ff" />
+      <stop offset="40%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+
+    <!-- Decorative Corner Gradients -->
+    <radialGradient id="topBlob" cx="0%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#bfdbfe" stop-opacity="0.6" />
+      <stop offset="60%" stop-color="#dbeafe" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#edf6ff" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="bottomBlob" cx="10%" cy="95%" r="70%">
+      <stop offset="0%" stop-color="#bae6fd" stop-opacity="0.5" />
+      <stop offset="50%" stop-color="#e0f2fe" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#f8fafc" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.04" />
+    </filter>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="1200" height="960" fill="url(#bgGrad)" />
+
+  <!-- Organic Wave Background Blobs -->
+  <path d="M0,0 Q320,100 240,280 T0,420 Z" fill="url(#topBlob)" />
+  <path d="M0,740 Q220,700 260,860 T140,960 L0,960 Z" fill="url(#bottomBlob)" />
+
+  <!-- Container Margins (X: 100, Y: 120) -->
+  <g transform="translate(100, 120)">
+    <!-- Category Tag -->
+    <text x="0" y="40" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" fill="#3b82f6" letter-spacing="3.5">
+      UI/UX CASE STUDY
+    </text>
+
+    <!-- Accent Pill -->
+    <rect x="0" y="60" width="60" height="5" rx="2.5" fill="#3b82f6" />
+
+    <!-- Main Title -->
+    <g transform="translate(0, 160)">
+      <text x="0" y="0" font-family="'DM Sans', 'Inter', -apple-system, sans-serif" font-size="64" font-weight="800" fill="#0f172a" letter-spacing="-1.5">
+        Competitive App Analysis
+      </text>
+      
+      <g transform="translate(0, 80)">
+        <text x="0" y="0" font-family="'DM Sans', 'Inter', -apple-system, sans-serif" font-size="64" font-weight="800" fill="#0f172a" letter-spacing="-1.5">
+          Based on the <tspan fill="#2563eb" font-weight="900">10 Laws of UX</tspan>
+        </text>
+
+        <!-- Dynamic Hand-Drawn Underline Stroke under "10 Laws of UX" -->
+        <path d="M410,24 Q570,36 840,16 Q630,28 425,20" fill="none" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M480,29 Q680,38 820,24" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" />
+      </g>
+    </g>
+
+    <!-- Subtitle -->
+    <g transform="translate(0, 340)">
+      <text x="0" y="0" font-family="'Inter', -apple-system, sans-serif" font-size="28" font-weight="400" fill="#64748b" letter-spacing="-0.3">
+        Understanding what works, what doesn't,
+      </text>
+      <text x="0" y="42" font-family="'Inter', -apple-system, sans-serif" font-size="28" font-weight="400" fill="#64748b" letter-spacing="-0.3">
+        and how UX can be better.
+      </text>
+    </g>
+
+    <!-- 3 Core Insights Section -->
+    <g transform="translate(0, 480)">
+      <!-- Item 1: Competitive Analysis -->
+      <g transform="translate(0, 0)">
+        <!-- Circle Icon Background -->
+        <circle cx="48" cy="48" r="46" fill="#e0f2fe" stroke="#bae6fd" stroke-width="2.5" />
+        <!-- Search Icon -->
+        <g transform="translate(32, 32)" stroke="#0284c7" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="13" cy="13" r="9" />
+          <line x1="20" y1="20" x2="31" y2="31" />
+        </g>
+        <!-- Label -->
+        <text x="0" y="130" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#334155" letter-spacing="1.5">
+          COMPETITIVE
+        </text>
+        <text x="0" y="156" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#334155" letter-spacing="1.5">
+          ANALYSIS
+        </text>
+      </g>
+
+      <!-- Divider 1 -->
+      <line x1="210" y1="25" x2="210" y2="95" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Item 2: 10 Laws of UX -->
+      <g transform="translate(270, 0)">
+        <!-- Circle Icon Background -->
+        <circle cx="48" cy="48" r="46" fill="#dcfce7" stroke="#bbf7d0" stroke-width="2.5" />
+        <!-- Checklist Icon -->
+        <g transform="translate(32, 32)" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="24" height="28" rx="4" />
+          <line x1="10" y1="9" x2="13" y2="9" />
+          <line x1="17" y1="9" x2="22" y2="9" />
+          <line x1="10" y1="16" x2="13" y2="16" />
+          <line x1="17" y1="16" x2="22" y2="16" />
+          <line x1="10" y1="23" x2="13" y2="23" />
+          <line x1="17" y1="23" x2="22" y2="23" />
+        </g>
+        <!-- Label -->
+        <text x="0" y="130" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#334155" letter-spacing="1.5">
+          10 LAWS
+        </text>
+        <text x="0" y="156" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#334155" letter-spacing="1.5">
+          OF UX
+        </text>
+      </g>
+
+      <!-- Divider 2 -->
+      <line x1="470" y1="25" x2="470" y2="95" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Item 3: Key Insights & Recommendations -->
+      <g transform="translate(530, 0)">
+        <!-- Circle Icon Background -->
+        <circle cx="48" cy="48" r="46" fill="#f3e8ff" stroke="#e9d5ff" stroke-width="2.5" />
+        <!-- Lightbulb Icon -->
+        <g transform="translate(32, 32)" stroke="#9333ea" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 2a10 10 0 0 0-7 17.1V22a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2.9A10 10 0 0 0 16 2z" />
+          <line x1="12" y1="28" x2="20" y2="28" />
+        </g>
+        <!-- Label -->
+        <text x="0" y="130" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#334155" letter-spacing="1.5">
+          KEY INSIGHTS
+        </text>
+        <text x="0" y="156" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#334155" letter-spacing="1.5">
+          &amp; RECOMMENDATIONS
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
