@@ -28,29 +28,34 @@ export const Contact: React.FC<ContactProps> = ({
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`https://formsubmit.co/ajax/${email}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          websiteUrl: formData.websiteUrl,
-          message: formData.message,
+          Name: formData.name,
+          Email: formData.email,
+          'Website / Link': formData.websiteUrl || 'Not provided',
+          Message: formData.message,
+          _subject: `New Portfolio Inquiry from ${formData.name}`,
+          _template: 'table',
+          _captcha: 'false',
         }),
       });
 
-      if (response.ok) {
+      const data = await response.json().catch(() => null);
+
+      if (response.ok || (data && (data.success === 'true' || data.success === true))) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', websiteUrl: '', message: '' });
       } else {
-        // Fallback to mailto link if API fails
+        // Fallback to mailto link if external service is blocked
         const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(
           `Portfolio Inquiry from ${formData.name}`
         )}&body=${encodeURIComponent(
-          `Name: ${formData.name}\nEmail: ${formData.email}\nWebsite: ${formData.websiteUrl}\n\nMessage:\n${formData.message}`
+          `Name: ${formData.name}\nEmail: ${formData.email}\nWebsite: ${formData.websiteUrl || 'Not provided'}\n\nMessage:\n${formData.message}`
         )}`;
         window.location.href = mailtoUrl;
         setIsSubmitted(true);
@@ -61,7 +66,7 @@ export const Contact: React.FC<ContactProps> = ({
       const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(
         `Portfolio Inquiry from ${formData.name}`
       )}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\nWebsite: ${formData.websiteUrl}\n\nMessage:\n${formData.message}`
+        `Name: ${formData.name}\nEmail: ${formData.email}\nWebsite: ${formData.websiteUrl || 'Not provided'}\n\nMessage:\n${formData.message}`
       )}`;
       window.location.href = mailtoUrl;
       setIsSubmitted(true);
