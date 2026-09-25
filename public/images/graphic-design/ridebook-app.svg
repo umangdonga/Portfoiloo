@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%">
+  <!-- Exact Pitch Black Canvas from RideBook App.png -->
+  <rect width="1000" height="600" fill="#000000"/>
+
+  <g transform="translate(100, 200)">
+    <!-- RIDE (White Segmented Digital Capsules) -->
+    <!-- 'R' -->
+    <g fill="#FFFFFF">
+      <rect x="20" y="20" width="22" height="160" rx="10"/>
+      <rect x="44" y="20" width="55" height="22" rx="10"/>
+      <rect x="44" y="90" width="55" height="22" rx="10"/>
+      <rect x="80" y="35" width="22" height="65" rx="10"/>
+      <rect x="75" y="105" width="22" height="75" rx="10" transform="rotate(-18 75 105)"/>
+    </g>
+
+    <!-- 'I' with Golden Amber Top Accent Circle -->
+    <g>
+      <circle cx="140" cy="-5" r="14" fill="#FFB800"/>
+      <rect x="129" y="20" width="22" height="160" rx="10" fill="#FFFFFF"/>
+    </g>
+
+    <!-- 'D' -->
+    <g fill="#FFFFFF">
+      <rect x="180" y="20" width="22" height="160" rx="10"/>
+      <rect x="204" y="20" width="50" height="22" rx="10"/>
+      <rect x="204" y="158" width="50" height="22" rx="10"/>
+      <path d="M245 35 C275 35 295 65 295 100 C295 135 275 165 245 165" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- 'E' -->
+    <g fill="#FFFFFF">
+      <rect x="330" y="20" width="22" height="160" rx="10"/>
+      <rect x="354" y="20" width="70" height="22" rx="10"/>
+      <rect x="354" y="90" width="55" height="22" rx="10"/>
+      <rect x="354" y="158" width="70" height="22" rx="10"/>
+    </g>
+
+    <!-- BOOK (Yellow Accent Badge + Steering Wheel inside 'O') -->
+    <!-- 'B' -->
+    <g fill="#FFFFFF">
+      <rect x="475" y="20" width="22" height="160" rx="10"/>
+      <rect x="499" y="20" width="45" height="22" rx="10"/>
+      <rect x="499" y="90" width="45" height="22" rx="10"/>
+      <rect x="499" y="158" width="45" height="22" rx="10"/>
+      <path d="M535 35 C555 35 565 52 565 65 C565 78 555 95 535 95" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" fill="none"/>
+      <path d="M535 105 C560 105 570 125 570 140 C570 155 560 170 535 170" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- 'O' - The Signature Golden Yellow Rounded Badge with Automotive Steering Wheel -->
+    <g transform="translate(605, 10)">
+      <!-- Golden Yellow Rounded Box -->
+      <rect x="0" y="0" width="160" height="180" rx="36" fill="#FDB813"/>
+      
+      <!-- Inner Black Steering Wheel Motif -->
+      <g transform="translate(80, 90)">
+        <!-- Outer Black Steering Ring -->
+        <circle cx="0" cy="0" r="62" stroke="#000000" stroke-width="20" fill="none"/>
+        <!-- Inner Hub -->
+        <circle cx="0" cy="0" r="14" fill="#000000"/>
+        <!-- 3-Spoke Sports Steering Structure -->
+        <!-- Spoke Left -->
+        <path d="M-12 -3 L-46 -15 L-44 -35 L-8 -12 Z" fill="#000000"/>
+        <!-- Spoke Right -->
+        <path d="M12 -3 L46 -15 L44 -35 L8 -12 Z" fill="#000000"/>
+        <!-- Spoke Down Center -->
+        <path d="M-7 12 L-10 46 L10 46 L7 12 Z" fill="#000000"/>
+      </g>
+    </g>
+
+    <!-- 'K' with Golden Sparkle Star -->
+    <g fill="#FFFFFF" transform="translate(795, 0)">
+      <rect x="0" y="20" width="22" height="160" rx="10"/>
+      <rect x="18" y="90" width="22" height="90" rx="10" transform="rotate(-38 18 90)"/>
+      <rect x="22" y="105" width="22" height="95" rx="10" transform="rotate(38 22 105)"/>
+      <!-- Golden 4-point Diamond Sparkle Star on top right branch of K -->
+      <path d="M72 15 Q72 32 85 32 Q72 32 72 49 Q72 32 59 32 Q72 32 72 15 Z" fill="#FFB800"/>
+    </g>
+  </g>
+</svg>

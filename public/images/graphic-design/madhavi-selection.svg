@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&amp;family=Great+Vibes&amp;display=swap');
+      .brand-serif { font-family: 'Playfair Display', serif; font-weight: 700; fill: #6E1F29; }
+      .brand-script { font-family: 'Great Vibes', cursive; font-size: 56px; fill: #6E1F29; }
+    </style>
+  </defs>
+
+  <!-- Clean Studio Canvas -->
+  <rect width="800" height="800" fill="#FFFFFF"/>
+
+  <!-- Ornate Peacock Art in Deep Crimson / Wine (#6E1F29) -->
+  <g transform="translate(400, 240) scale(1.15)">
+    <!-- Peacock Head & Crown -->
+    <path d="M-8 -70 C-18 -70 -26 -60 -26 -46 C-26 -35 -18 -26 -6 -24 L-2 4 L6 4 L10 -24 C20 -28 26 -38 26 -48 C26 -60 16 -70 6 -70 Z" fill="#6E1F29"/>
+    <!-- Peacock Head Crest Feathers -->
+    <circle cx="-16" cy="-86" r="3.5" fill="#6E1F29"/>
+    <circle cx="-6" cy="-92" r="4" fill="#6E1F29"/>
+    <circle cx="6" cy="-92" r="4" fill="#6E1F29"/>
+    <circle cx="16" cy="-86" r="3.5" fill="#6E1F29"/>
+    <path d="M-16 -86 L-10 -70 M-6 -92 L-3 -70 M6 -92 L3 -70 M16 -86 L10 -70" stroke="#6E1F29" stroke-width="2"/>
+    <!-- Eye -->
+    <ellipse cx="-12" cy="-52" rx="3" ry="4" fill="#FFFFFF"/>
+    <circle cx="-13" cy="-52" r="1.5" fill="#6E1F29"/>
+    <!-- Beak -->
+    <path d="M-26 -48 L-42 -42 L-26 -38 Z" fill="#6E1F29"/>
+
+    <!-- Lavish Layered Peacock Feathers (Right Fan) -->
+    <!-- Main Feather 1 -->
+    <path d="M-5 -30 C30 -90 90 -110 120 -60 C135 -30 110 20 20 15 C-5 14 -10 -10 -5 -30 Z" fill="#6E1F29"/>
+    <path d="M20 -25 C50 -70 95 -80 110 -50 C118 -30 95 5 35 3 C15 2 12 -12 20 -25 Z" fill="#FFFFFF" opacity="0.95"/>
+    <path d="M35 -20 C60 -55 90 -62 98 -42 C102 -28 85 -2 46 -3 Z" fill="#6E1F29"/>
+
+    <!-- Feather 2 -->
+    <path d="M0 -15 C45 -60 125 -65 145 -15 C155 20 115 50 15 35 Z" fill="#6E1F29"/>
+    <path d="M30 -5 C65 -40 120 -40 130 -10 C135 15 102 32 30 20 Z" fill="#FFFFFF" opacity="0.95"/>
+    <path d="M50 0 C80 -25 110 -25 116 -5 C118 10 95 20 50 12 Z" fill="#6E1F29"/>
+
+    <!-- Feather 3 -->
+    <path d="M-5 10 C35 -10 130 5 135 45 C138 75 90 85 10 50 Z" fill="#6E1F29"/>
+    <path d="M25 16 C55 3 115 15 120 40 C122 60 85 68 25 42 Z" fill="#FFFFFF" opacity="0.95"/>
+    <path d="M45 22 C70 12 105 20 108 36 C110 50 82 55 45 35 Z" fill="#6E1F29"/>
+
+    <!-- Feather 4 (Lower swirl) -->
+    <path d="M-10 25 C20 25 95 65 80 100 C70 120 30 115 -10 70 Z" fill="#6E1F29"/>
+    <path d="M10 35 C35 35 75 70 65 92 C58 105 30 100 0 68 Z" fill="#FFFFFF" opacity="0.95"/>
+    <path d="M20 45 C40 45 62 70 55 82 C50 90 32 85 10 65 Z" fill="#6E1F29"/>
+
+    <!-- Feather Plume Accent Details -->
+    <path d="M-2 -35 C-25 -65 -60 -40 -35 -15" stroke="#6E1F29" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M-8 -15 C-35 -25 -50 0 -25 15" stroke="#6E1F29" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Lord Krishna's Bansuri (Flute) -->
+  <g transform="translate(400, 390)">
+    <!-- Flute Bar with Decorative Ends -->
+    <path d="M-280 -10 
+             C-295 -18 -310 -10 -310 0 
+             C-310 10 -295 18 -280 10 
+             L280 10 
+             C295 18 310 10 310 0 
+             C310 -10 295 -18 280 -10 
+             Z" fill="#A8434D"/>
+    
+    <!-- Flute Finger Holes -->
+    <circle cx="-160" cy="0" r="7" fill="#FFFFFF"/>
+    <circle cx="-80" cy="0" r="7" fill="#FFFFFF"/>
+    <circle cx="0" cy="0" r="7" fill="#FFFFFF"/>
+    <circle cx="80" cy="0" r="7" fill="#FFFFFF"/>
+    <circle cx="160" cy="0" r="7" fill="#FFFFFF"/>
+
+    <!-- Ornate Hanging Tassels (Left Side) -->
+    <!-- Ribbon 1 -->
+    <path d="M-240 8 C-250 45 -220 70 -225 110 C-228 135 -245 150 -260 165" stroke="#A8434D" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <!-- Bead 1 -->
+    <circle cx="-225" cy="110" r="10" fill="#6E1F29"/>
+    <!-- Hanging Silk Tassel 1 -->
+    <path d="M-260 165 C-290 195 -315 240 -275 250 C-240 250 -245 200 -260 165 Z" fill="#6E1F29"/>
+    <path d="M-270 250 L-290 270 M-260 250 L-265 275 M-250 250 L-240 270" stroke="#6E1F29" stroke-width="3"/>
+
+    <!-- Ribbon 2 -->
+    <path d="M-225 8 C-205 35 -190 75 -200 115 C-205 135 -170 160 -150 180" stroke="#A8434D" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <!-- Bead 2 -->
+    <circle cx="-198" cy="115" r="9" fill="#6E1F29"/>
+    <!-- Hanging Silk Tassel 2 -->
+    <path d="M-150 180 C-180 205 -190 255 -155 265 C-125 265 -135 210 -150 180 Z" fill="#6E1F29"/>
+    <path d="M-165 265 L-175 285 M-155 265 L-155 290 M-145 265 L-135 285" stroke="#6E1F29" stroke-width="3"/>
+  </g>
+
+  <!-- Hand-Lettered Brand Typography: "Madhavi" -->
+  <text x="425" y="550" text-anchor="middle" font-size="108" class="brand-serif" letter-spacing="4">Madhavi</text>
+
+  <!-- Script Subtitle: "Selection" -->
+  <text x="440" y="635" text-anchor="middle" class="brand-script">Selection</text>
+</svg>

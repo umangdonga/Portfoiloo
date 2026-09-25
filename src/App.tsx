@@ -21,9 +21,7 @@ import { ImageModal } from './components/ImageModal';
 export default function App() {
   const [modalImage, setModalImage] = useState<{ url: string; title: string } | null>(null);
 
-  const RESUME_URL = '/Umang_Donga_Resume.pdf';
-  const PHOTO_URL =
-    'https://framerusercontent.com/images/a9vcaLEy5Cxu04coxUH9ZGBiQQE.png?width=1126&height=1397';
+  const RESUME_URL = import.meta.env.VITE_RESUME_URL || '/Umang_Donga_Resume.pdf';
   const BEHANCE_URL = 'https://www.behance.net/umangdonga';
   const LINKEDIN_URL = 'https://www.linkedin.com/in/umangdonga24/';
   const EMAIL = 'umangdonga98@gmail.com';
@@ -48,7 +46,6 @@ export default function App() {
       <main>
         {/* Hero Section */}
         <Hero
-          photoUrl={PHOTO_URL}
           behanceUrl={BEHANCE_URL}
           linkedinUrl={LINKEDIN_URL}
           resumeUrl={RESUME_URL}
@@ -88,7 +85,10 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer behanceUrl={BEHANCE_URL} linkedinUrl={LINKEDIN_URL} />
+      <Footer
+        behanceUrl={BEHANCE_URL}
+        linkedinUrl={LINKEDIN_URL}
+      />
 
       {/* Lightbox Image Preview Modal */}
       <ImageModal

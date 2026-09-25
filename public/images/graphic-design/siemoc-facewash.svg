@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="100%" height="100%">
+  <defs>
+    <!-- Studio Lighting Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F3F5"/>
+      <stop offset="60%" stop-color="#E5E7EB"/>
+      <stop offset="100%" stop-color="#D1D5DB"/>
+    </linearGradient>
+
+    <!-- Box Face Gradients (Isometric lighting) -->
+    <linearGradient id="boxTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F3F4F6"/>
+    </linearGradient>
+    <linearGradient id="boxRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2E4E8"/>
+      <stop offset="100%" stop-color="#C5C9D1"/>
+    </linearGradient>
+
+    <!-- Tube Gradients -->
+    <linearGradient id="tubeBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#F9FAFB"/>
+      <stop offset="85%" stop-color="#E5E7EB"/>
+      <stop offset="100%" stop-color="#D1D5DB"/>
+    </linearGradient>
+
+    <!-- Cap Gloss Gradient -->
+    <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#374151"/>
+      <stop offset="40%" stop-color="#111827"/>
+      <stop offset="70%" stop-color="#030712"/>
+      <stop offset="100%" stop-color="#1F2937"/>
+    </linearGradient>
+
+    <!-- Ambient Shadow Filter -->
+    <filter id="softShadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="12" dy="28" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.32"/>
+      </feComponentTransfer>
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Studio Background -->
+  <rect width="1000" height="750" fill="url(#bgGrad)"/>
+
+  <!-- Soft Studio Floor Shadows -->
+  <g opacity="0.35">
+    <ellipse cx="600" cy="560" rx="260" ry="60" fill="#6B7280" filter="blur(22px)"/>
+    <ellipse cx="400" cy="590" rx="190" ry="45" fill="#4B5563" filter="blur(16px)"/>
+  </g>
+
+  <!-- 3D Cosmetic Packaging Carton Box (Standing Angled Behind Tube) -->
+  <g transform="translate(140, 30)">
+    <!-- Main Angled Front Face of Box -->
+    <polygon points="290,140 590,40 790,260 490,360" fill="url(#boxTop)" stroke="#E5E7EB" stroke-width="1"/>
+    
+    <!-- Top Face Text & SIEMOC Logo -->
+    <g transform="translate(420, 160) rotate(-22)">
+      <!-- 3-petal orange leaf symbol -->
+      <g transform="translate(-18, -32) scale(0.7)">
+        <path d="M10 0 C15 10 25 15 25 25 C15 25 10 15 10 0 Z" fill="#F97316"/>
+        <path d="M0 10 C10 15 15 25 15 35 C5 35 0 25 0 10 Z" fill="#EA580C"/>
+        <path d="M20 10 C20 20 28 30 38 30 C38 20 30 10 20 10 Z" fill="#FB923C"/>
+      </g>
+      <text x="12" y="-12" font-family="'Didot', 'Bodoni MT', serif" font-size="34" font-weight="900" letter-spacing="4" fill="#111827">SIEMOC</text>
+    </g>
+
+    <!-- Right Flank / Main Height Face of the Box -->
+    <polygon points="490,360 790,260 790,510 490,610" fill="url(#boxTop)" stroke="#E5E7EB" stroke-width="1"/>
+    
+    <!-- Left Depth Face of the Box -->
+    <polygon points="290,140 490,360 490,610 290,390" fill="#E2E5EA" stroke="#D1D5DB" stroke-width="1"/>
+
+    <!-- Typography on Right Flank -->
+    <g transform="translate(505, 375) skewY(-18)">
+      <text x="0" y="0" font-family="'Inter', sans-serif" font-size="13" font-weight="800" letter-spacing="2" fill="#374151">GENTLE &amp; REFRESHING</text>
+      <text x="0" y="24" font-family="'Inter', sans-serif" font-size="24" font-weight="900" letter-spacing="1.5" fill="#111827">FACE WASH</text>
+
+      <line x1="0" y1="52" x2="35" y2="52" stroke="#F97316" stroke-width="2"/>
+      <text x="42" y="56" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#4B5563">with</text>
+      <text x="74" y="56" font-family="'Inter', sans-serif" font-size="14" font-weight="800" fill="#111827">Hyaluronic Acid</text>
+
+      <text x="0" y="90" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#6B7280">Moisturizes and</text>
+      <text x="0" y="104" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#6B7280">smoothens skin</text>
+
+      <text x="0" y="142" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#374151">50 g \ 1.69 fl.oz</text>
+
+      <!-- Bottom SIEMOC Brand -->
+      <g transform="translate(0, 205)">
+        <path d="M-6 -10 C-3 -3 2 0 2 6 C-4 6 -6 3 -6 -10 Z" fill="#F97316"/>
+        <path d="M-12 -3 C-7 0 -4 5 -4 11 C-10 11 -12 7 -12 -3 Z" fill="#EA580C"/>
+        <text x="10" y="5" font-family="'Didot', 'Bodoni MT', serif" font-size="30" font-weight="900" letter-spacing="4" fill="#111827">SIEMOC</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 3D Squeeze Tube (Lying Angled Across Front) -->
+  <g transform="translate(380, 480) rotate(-42)">
+    <!-- Tube Body Shadow -->
+    <rect x="-80" y="-190" width="160" height="280" rx="20" fill="rgba(0,0,0,0.18)" filter="blur(14px)"/>
+
+    <!-- Tube Crimped Top Seal -->
+    <path d="M-72 -190 L72 -190 L68 -175 L-68 -175 Z" fill="#D1D5DB"/>
+    <!-- Crimp ridges -->
+    <line x1="-60" y1="-190" x2="-60" y2="-175" stroke="#9CA3AF" stroke-width="1.5"/>
+    <line x1="-40" y1="-190" x2="-40" y2="-175" stroke="#9CA3AF" stroke-width="1.5"/>
+    <line x1="-20" y1="-190" x2="-20" y2="-175" stroke="#9CA3AF" stroke-width="1.5"/>
+    <line x1="0" y1="-190" x2="0" y2="-175" stroke="#9CA3AF" stroke-width="1.5"/>
+    <line x1="20" y1="-190" x2="20" y2="-175" stroke="#9CA3AF" stroke-width="1.5"/>
+    <line x1="40" y1="-190" x2="40" y2="-175" stroke="#9CA3AF" stroke-width="1.5"/>
+    <line x1="60" y1="-190" x2="60" y2="-175" stroke="#9CA3AF" stroke-width="1.5"/>
+
+    <!-- Tube Main Body -->
+    <path d="M-68 -175 L68 -175 C80 -80 82 0 65 75 C58 95 48 105 38 110 L-38 110 C-48 105 -58 95 -65 75 C-82 0 -80 -80 -68 -175 Z" fill="url(#tubeBody)" stroke="#E5E7EB" stroke-width="1"/>
+
+    <!-- Specular Highlight Strip -->
+    <path d="M-30 -170 L-22 -170 C-15 0 -15 60 -22 100 L-30 100 C-24 60 -24 0 -30 -170 Z" fill="#FFFFFF" opacity="0.6"/>
+
+    <!-- Printed Tube Branding -->
+    <g transform="translate(0, -60)">
+      <!-- Leaf Icon -->
+      <g transform="translate(-10, -55) scale(0.6)">
+        <path d="M10 0 C15 10 25 15 25 25 C15 25 10 15 10 0 Z" fill="#F97316"/>
+        <path d="M0 10 C10 15 15 25 15 35 C5 35 0 25 0 10 Z" fill="#EA580C"/>
+      </g>
+      <text x="0" y="-30" text-anchor="middle" font-family="'Didot', 'Bodoni MT', serif" font-size="28" font-weight="900" letter-spacing="3" fill="#111827">SIEMOC</text>
+      
+      <text x="0" y="-6" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="800" letter-spacing="1.5" fill="#4B5563">GENTLE &amp; REFRESHING</text>
+      <text x="0" y="14" text-anchor="middle" font-family="'Inter', sans-serif" font-size="18" font-weight="900" letter-spacing="1" fill="#111827">FACE WASH</text>
+
+      <line x1="-35" y1="32" x2="-15" y2="32" stroke="#F97316" stroke-width="1.5"/>
+      <text x="-5" y="36" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#4B5563">with</text>
+      <text x="15" y="36" font-family="'Inter', sans-serif" font-size="10" font-weight="800" fill="#111827">Hyaluronic Acid</text>
+
+      <text x="0" y="58" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" font-weight="500" fill="#6B7280">Moisturizes and smoothens skin</text>
+      <text x="0" y="80" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="700" fill="#374151">50 g \ 1.69 fl.oz</text>
+    </g>
+
+    <!-- Glossy Black Screw Flip-Cap -->
+    <path d="M-38 110 L38 110 L44 125 L44 165 C44 178 30 184 0 184 C-30 184 -44 178 -44 165 L-44 125 Z" fill="url(#capGrad)" stroke="#111827" stroke-width="1"/>
+    <!-- Cap gloss reflections -->
+    <rect x="-14" y="118" width="6" height="58" rx="2" fill="#6B7280" opacity="0.4"/>
+    <line x1="-40" y1="125" x2="40" y2="125" stroke="#374151" stroke-width="1"/>
+  </g>
+</svg>

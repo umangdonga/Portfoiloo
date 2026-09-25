@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" width="100%" height="100%">
+  <defs>
+    <!-- Lush Green Gradient -->
+    <radialGradient id="greenBg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#2D7A32"/>
+      <stop offset="55%" stop-color="#1B5E20"/>
+      <stop offset="100%" stop-color="#0E3D12"/>
+    </radialGradient>
+
+    <!-- Lime Splash Ground Curve -->
+    <linearGradient id="limeHill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#AEEA00"/>
+      <stop offset="40%" stop-color="#7CB342"/>
+      <stop offset="100%" stop-color="#558B2F"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Green Lush Background -->
+  <rect width="900" height="900" fill="url(#greenBg)"/>
+
+  <!-- Top Left: "EAT HEALTHY STAY HEALTHY" Circular Badge -->
+  <g transform="translate(100, 110)">
+    <circle cx="0" cy="0" r="62" fill="#FFFFFF" filter="url(#softGlow)"/>
+    <text font-family="'Arial Black', sans-serif" font-size="10" font-weight="900" fill="#1B5E20" text-anchor="middle">
+      <textPath href="#circlePathTop">EAT HEALTHY</textPath>
+    </text>
+    <path id="circlePathTop" d="M-45 -10 A48 48 0 0 1 45 -10" fill="none"/>
+    <!-- Heart of colorful produce in center -->
+    <g transform="translate(0, -2) scale(0.65)">
+      <path d="M0 28 C-35 -10 -45 -35 -20 -45 C-5 -50 0 -35 0 -35 C0 -35 5 -50 20 -45 C45 -35 35 -10 0 28 Z" fill="#E53935"/>
+      <circle cx="-12" cy="-22" r="7" fill="#43A047"/>
+      <circle cx="12" cy="-22" r="6" fill="#FDD835"/>
+      <circle cx="0" cy="-6" r="8" fill="#FB8C00"/>
+      <circle cx="-8" cy="8" r="6" fill="#8E24AA"/>
+    </g>
+    <text font-family="'Arial Black', sans-serif" font-size="10" font-weight="900" fill="#1B5E20" text-anchor="middle">
+      <textPath href="#circlePathBottom">STAY HEALTHY</textPath>
+    </text>
+    <path id="circlePathBottom" d="M-48 20 A50 50 0 0 0 48 20" fill="none"/>
+  </g>
+
+  <!-- Top Center Title: "Healthy Vegetables" -->
+  <g transform="translate(490, 180)">
+    <!-- Yellow sprout splash above H -->
+    <path d="M-140 -65 C-125 -85 -105 -80 -115 -60 Z" fill="#FDD835"/>
+    <path d="M-95 -80 C-70 -90 -65 -65 -85 -60 Z" fill="#FDD835"/>
+    <text x="-15" y="0" text-anchor="middle" font-family="'Brush Script MT', 'Dancing Script', cursive, sans-serif" font-size="115" font-weight="bold" fill="#FFFFFF" filter="url(#softGlow)">Healthy</text>
+    <text x="0" y="85" text-anchor="middle" font-family="'Brush Script MT', 'Dancing Script', cursive, sans-serif" font-size="130" font-weight="bold" fill="#FFFFFF" filter="url(#softGlow)">Vegetables</text>
+  </g>
+
+  <!-- Top Right: "1st ANNIVERSARY Limited Offer" Festive Wreath -->
+  <g transform="translate(770, 140)">
+    <!-- Sparkles & leaves circle -->
+    <circle cx="0" cy="0" r="75" stroke="#FDD835" stroke-width="2" stroke-dasharray="6,8" fill="rgba(0,0,0,0.15)"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="44" font-weight="bold" fill="#FDD835">1st</text>
+    <text x="0" y="16" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" letter-spacing="1">ANNIVERSARY</text>
+    <rect x="-55" y="26" width="110" height="20" rx="10" fill="#E53935"/>
+    <text x="0" y="40" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">Limited Offer</text>
+  </g>
+
+  <!-- Lime Green Rolling Hill Curve (Foreground Ground Plane) -->
+  <path d="M-50 620 Q450 490 950 630 L950 950 L-50 950 Z" fill="url(#limeHill)"/>
+
+  <!-- Left Yellow Special Offer Badge (Gujarati) -->
+  <g transform="translate(130, 370)">
+    <rect x="-95" y="-45" width="190" height="90" rx="14" fill="#FFFFFF" stroke="#CDDC39" stroke-width="4" filter="url(#softGlow)"/>
+    <text x="0" y="-12" text-anchor="middle" font-family="'Shruti', 'Gujarati MT', sans-serif" font-size="20" font-weight="bold" fill="#E53935">₹ ૨૦૦ ની ખરીદી ઉપર</text>
+    <text x="0" y="24" text-anchor="middle" font-family="'Shruti', 'Gujarati MT', sans-serif" font-size="22" font-weight="bold" fill="#1B5E20">૧ કિલો ફ્રુટ ફ્રી</text>
+  </g>
+
+  <!-- Right Yellow Special Offer Badge (Gujarati) -->
+  <g transform="translate(780, 385)">
+    <rect x="-95" y="-55" width="190" height="110" rx="14" fill="#FFFFFF" stroke="#CDDC39" stroke-width="4" filter="url(#softGlow)"/>
+    <text x="0" y="-22" text-anchor="middle" font-family="'Shruti', 'Gujarati MT', sans-serif" font-size="17" font-weight="bold" fill="#C62828">આ ઓફર ફક્ત</text>
+    <text x="0" y="8" text-anchor="middle" font-family="'Shruti', 'Gujarati MT', sans-serif" font-size="16" font-weight="bold" fill="#C62828">તા. ૦૫-૦૧-૨૦૨૬</text>
+    <text x="0" y="36" text-anchor="middle" font-family="'Shruti', 'Gujarati MT', sans-serif" font-size="16" font-weight="bold" fill="#C62828">ના દિવસે જ માન્ય રહેશે.</text>
+  </g>
+
+  <!-- Centerpiece: Woven Basket with Fresh Vegetables & Fruits -->
+  <g transform="translate(450, 480)" filter="url(#softGlow)">
+    <!-- Wicker Basket Handle Arch -->
+    <path d="M-150 -10 C-150 -180 150 -180 150 -10" stroke="#8D5B34" stroke-width="20" fill="none" stroke-linecap="round"/>
+    <path d="M-145 -10 C-145 -175 145 -175 145 -10" stroke="#B27B49" stroke-width="8" stroke-dasharray="14,14" fill="none"/>
+
+    <!-- Fresh Produce Overflowing inside basket -->
+    <!-- Purple Cabbage -->
+    <circle cx="50" cy="-60" r="60" fill="#6A1B9A"/>
+    <path d="M20 -85 C55 -95 85 -60 70 -30 C45 -35 25 -65 20 -85 Z" fill="#E1BEE7" opacity="0.6"/>
+    <!-- Red Bell Pepper -->
+    <path d="M-70 -90 C-30 -95 -20 -40 -40 -20 C-60 -10 -90 -30 -90 -60 Z" fill="#D32F2F"/>
+    <rect x="-56" y="-105" width="8" height="18" rx="4" fill="#388E3C"/>
+    <!-- Dense Broccoli Heads -->
+    <circle cx="160" cy="-30" r="48" fill="#2E7D32"/>
+    <circle cx="195" cy="-10" r="40" fill="#388E3C"/>
+    <!-- Bright Red Tomatoes -->
+    <circle cx="-135" cy="50" r="40" fill="#E53935"/>
+    <circle cx="-60" cy="55" r="42" fill="#D32F2F"/>
+    <circle cx="-18" cy="65" r="38" fill="#F44336"/>
+    <!-- Sliced Lemons & Onions -->
+    <circle cx="20" cy="60" r="32" fill="#FBC02D"/>
+    <circle cx="20" cy="60" r="26" fill="#FFF59D"/>
+    <!-- Bananas on the left -->
+    <path d="M-220 50 C-180 0 -130 20 -110 60 C-135 45 -180 30 -220 50 Z" fill="#FBC02D"/>
+    <path d="M-240 70 C-190 20 -140 40 -120 80 C-145 65 -190 50 -240 70 Z" fill="#FDD835"/>
+    <!-- Green Grapes bunch -->
+    <g fill="#AEEA00">
+      <circle cx="-120" cy="-10" r="14"/><circle cx="-105" cy="5" r="14"/><circle cx="-130" cy="15" r="13"/>
+      <circle cx="-110" cy="25" r="13"/><circle cx="-95" cy="15" r="14"/>
+    </g>
+
+    <!-- Woven Wicker Basket Body -->
+    <path d="M-170 -10 L170 -10 C155 120 110 160 0 160 C-110 160 -155 120 -170 -10 Z" fill="#8D5B34"/>
+    <!-- Wicker Basket Weave Lines -->
+    <path d="M-150 25 Q0 45 150 25 M-140 65 Q0 85 140 65 M-120 105 Q0 125 120 105" stroke="#5D3A1A" stroke-width="7" fill="none"/>
+    <path d="M-130 5 L-90 145 M-70 5 L-40 155 M0 5 L0 160 M70 5 L40 155 M130 5 L90 145" stroke="#B27B49" stroke-width="4" stroke-dasharray="10,10"/>
+  </g>
+
+  <!-- Big Bold 3D Brand Title: "FARM FRESH" -->
+  <g transform="translate(450, 715)">
+    <!-- White Outline & Drop Glow -->
+    <text x="0" y="0" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="78" font-style="italic" letter-spacing="3" fill="#0D4411" stroke="#FFFFFF" stroke-width="14">FARM FRESH</text>
+    <text x="0" y="0" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="78" font-style="italic" letter-spacing="3" fill="#1B5E20">FARM FRESH</text>
+    <!-- Twin Green Leaves Icon on Right of Title -->
+    <path d="M255 -38 C285 -60 300 -30 280 -15 C265 -5 248 -18 255 -38 Z" fill="#7CB342"/>
+    <path d="M280 -15 C310 -30 320 0 300 15 C285 20 275 0 280 -15 Z" fill="#43A047"/>
+    <!-- Subtitle: "Vegetable & Fruits Store" -->
+    <text x="0" y="44" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="28" font-weight="900" fill="#111827">Vegetable &amp; Fruits Store</text>
+  </g>
+
+  <!-- Gujarati Heartfelt Thank You Note -->
+  <text x="450" y="805" text-anchor="middle" font-family="'Shruti', 'Gujarati MT', sans-serif" font-size="24" font-weight="bold" fill="#111827">તમારા પ્રેમ અને વિશ્વાસ બદલ દિલથી આભાર</text>
+
+  <!-- Bottom Bright Red Banner Bar (Gujarati) -->
+  <g transform="translate(450, 858)">
+    <rect x="-430" y="-28" width="860" height="56" rx="6" fill="#C62828" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="0" y="8" text-anchor="middle" font-family="'Shruti', 'Gujarati MT', sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF">અમારા સ્ટોરની ૧ વર્ષની વર્ષગાંઠ ની ખુશીમાં અમારા માનવંતા ગ્રાહકો માટે લાવ્યા છીએ ખાસ ઓફર</text>
+  </g>
+</svg>

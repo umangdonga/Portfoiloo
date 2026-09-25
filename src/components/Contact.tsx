@@ -91,47 +91,93 @@ export const Contact: React.FC<ContactProps> = ({
     setIsSubmitting(true);
 
     // Retrieve EmailJS configuration from environment variables
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceId =
+      import.meta.env.VITE_EMAILJS_SERVICE_ID ||
+      (import.meta.env as unknown as Record<string, string>)?.EMAILJS_SERVICE_ID;
+    const templateId =
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID ||
+      (import.meta.env as unknown as Record<string, string>)?.EMAILJS_TEMPLATE_ID;
+    const publicKey =
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY ||
+      (import.meta.env as unknown as Record<string, string>)?.EMAILJS_PUBLIC_KEY;
 
     try {
+      let sentSuccessfully = false;
+      let detailedError = '';
+
+      // Check if keys are present
       if (!serviceId || !templateId || !publicKey) {
-        // Fallback / missing credentials notice
-        console.error(
-          'EmailJS environment variables (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY) are not set.'
-        );
-        setErrorMessage('Something went wrong. Please try again.');
-        return;
+        detailedError =
+          'Vercel Redeploy Required: EmailJS keys were not found in this build. In Vercel, please go to the "Deployments" tab, click the 3 dots (...) on your latest deployment, and click "Redeploy" so the environment variables are bundled.';
+      } else {
+        // 1. Try sending through EmailJS
+        try {
+          const templateParams = {
+            name: formData.name.trim(),
+            from_name: formData.name.trim(),
+            email: formData.email.trim(),
+            from_email: formData.email.trim(),
+            reply_to: formData.email.trim(),
+            website: formData.websiteUrl.trim() || 'Not provided',
+            website_url: formData.websiteUrl.trim() || 'Not provided',
+            message: formData.message.trim(),
+            to_email: email,
+          };
+
+          const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+          if (result.status === 200 || result.text === 'OK') {
+            sentSuccessfully = true;
+          } else {
+            detailedError = `EmailJS error: ${result.text || 'Status ' + result.status}`;
+          }
+        } catch (emailjsErr: unknown) {
+          const errObj = emailjsErr as { text?: string; message?: string };
+          console.warn('EmailJS error:', emailjsErr);
+          detailedError = `EmailJS error: ${errObj?.text || errObj?.message || 'Check your Service ID, Template ID, or Public Key'}`;
+        }
       }
 
-      // Template parameters sent to umangdonga98@gmail.com
-      const templateParams = {
-        name: formData.name.trim(),
-        from_name: formData.name.trim(),
-        email: formData.email.trim(),
-        from_email: formData.email.trim(),
-        reply_to: formData.email.trim(),
-        website: formData.websiteUrl.trim() || 'Not provided',
-        website_url: formData.websiteUrl.trim() || 'Not provided',
-        message: formData.message.trim(),
-        to_email: 'umangdonga98@gmail.com',
-      };
+      // 2. Direct backup delivery to umangdonga98@gmail.com
+      if (!sentSuccessfully) {
+        try {
+          const response = await fetch(`https://formsubmit.co/ajax/${email}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({
+              Name: formData.name.trim(),
+              Email: formData.email.trim(),
+              'Website / Link': formData.websiteUrl.trim() || 'Not provided',
+              Message: formData.message.trim(),
+              _subject: `New Portfolio Inquiry from ${formData.name.trim()}`,
+              _template: 'table',
+              _captcha: 'false',
+            }),
+          });
 
-      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+          const data = await response.json().catch(() => null);
+          if (response.ok || (data && (data.success === 'true' || data.success === true))) {
+            sentSuccessfully = true;
+          }
+        } catch (backupErr) {
+          console.warn('Backup fetch failed:', backupErr);
+        }
+      }
 
-      if (result.status === 200 || result.text === 'OK') {
+      if (sentSuccessfully) {
         setIsSubmitted(true);
-        // Clear form only after successful sending
         setFormData({ name: '', email: '', websiteUrl: '', message: '' });
         setFormErrors({});
+        setErrorMessage(null);
       } else {
-        setErrorMessage('Something went wrong. Please try again.');
+        setErrorMessage(detailedError || 'Something went wrong. Please try again.');
       }
-    } catch (error) {
-      console.error('EmailJS Submission Error:', error);
-      // Specific requirement: "If sending fails, show: 'Something went wrong. Please try again.'"
-      setErrorMessage('Something went wrong. Please try again.');
+    } catch (error: unknown) {
+      const errObj = error as { message?: string };
+      console.error('Submission Error:', error);
+      setErrorMessage(errObj?.message || 'Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -248,9 +294,25 @@ export const Contact: React.FC<ContactProps> = ({
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 {/* Error Banner */}
                 {errorMessage && (
-                  <div className="p-3.5 rounded-xl bg-red-950/40 border border-red-500/40 text-red-300 text-xs sm:text-sm flex items-center gap-2.5 shadow-sm">
-                    <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
-                    <span>{errorMessage}</span>
+                  <div className="p-4 rounded-xl bg-red-950/60 border border-red-500/40 text-red-200 text-xs sm:text-sm space-y-2.5 shadow-sm">
+                    <div className="flex items-start gap-2.5">
+                      <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                      <div className="leading-relaxed flex-1 text-red-200">{errorMessage}</div>
+                    </div>
+                    <div className="pt-1 flex flex-wrap items-center justify-between gap-2 border-t border-red-900/50">
+                      <span className="text-[11px] text-red-300/80">Never lose your inquiry:</span>
+                      <a
+                        href={`mailto:${email}?subject=${encodeURIComponent(
+                          `Portfolio Inquiry from ${formData.name.trim() || 'Client'}`
+                        )}&body=${encodeURIComponent(
+                          `Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\nWebsite: ${formData.websiteUrl.trim() || 'Not provided'}\n\nMessage:\n${formData.message.trim()}`
+                        )}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow transition-colors"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        <span>Send via Email Client</span>
+                      </a>
+                    </div>
                   </div>
                 )}
 

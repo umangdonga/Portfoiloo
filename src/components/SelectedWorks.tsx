@@ -67,136 +67,130 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectImage }) =
   ];
 
   const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
+    setExpandedId((prev) => (prev === id ? null : id));
   };
 
   return (
-    <section id="work" className="relative py-24 px-4 sm:px-6 md:px-8">
-      {/* Background Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-700/10 rounded-full blur-[140px] pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto">
+    <section id="work" className="relative py-24 px-4 sm:px-6 md:px-8 border-t border-slate-900">
+      <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
             <span>Portfolio</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#4181f0]">
-            Selected Works
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            Selected <span className="text-[#4181f0]">Works</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed">
-            A collection of some of the projects I have worked on throughout my career
+            Featured case studies and design projects showcasing end-to-end UX research, wireframing, and UI systems
           </p>
         </div>
 
-        {/* Accordion Stack */}
-        <div className="space-y-5">
-          {projects.map((project) => {
-            const isExpanded = expandedId === project.id;
+        {/* Selected Works Container Card */}
+        <div className="rounded-3xl p-4 sm:p-8 md:p-10 bg-[#0d1322]/80 border border-[#2a3050] shadow-2xl backdrop-blur-xl">
+          <div className="space-y-4">
+            {projects.map((project) => {
+              const isExpanded = expandedId === project.id;
 
-            return (
-              <div
-                key={project.id}
-                className={`transition-all duration-300 rounded-2xl overflow-hidden ${
-                  isExpanded
-                    ? 'bg-[#15244e] border-[1.5px] border-[#2b60e2] shadow-2xl shadow-blue-900/40 p-5 sm:p-7 relative'
-                    : 'bg-[#0d1322]/80 hover:bg-[#111a2f] border border-[#2a3050] hover:border-blue-500/40 p-4 sm:p-5 cursor-pointer backdrop-blur-md'
-                }`}
-              >
-                {/* Left accent bar on expanded card (matches image.png) */}
-                {isExpanded && (
-                  <div className="absolute left-2.5 sm:left-3 top-6 bottom-6 w-1 sm:w-1.5 bg-[#4181f0] rounded-full shadow-[0_0_12px_#4181f0]" />
-                )}
-
-                {/* Header Row */}
+              return (
                 <div
-                  onClick={() => toggleExpand(project.id)}
-                  className={`flex items-center justify-between cursor-pointer select-none ${
-                    isExpanded ? 'pl-3 sm:pl-4 mb-5' : ''
+                  key={project.id}
+                  className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                    isExpanded
+                      ? 'bg-[#080d19] border-blue-500/40 shadow-lg shadow-blue-500/10 p-5 sm:p-6'
+                      : 'bg-slate-900/40 border-slate-800/80 hover:border-blue-500/30 p-4 sm:p-5'
                   }`}
                 >
-                  <div className="flex items-center gap-3.5 sm:gap-4">
-                    {/* Number Badge */}
-                    <div
-                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-colors ${
-                        isExpanded
-                          ? 'bg-[#4181f0] text-white shadow-md shadow-blue-500/30'
-                          : 'border border-[#4181f0] text-[#4181f0] bg-blue-950/40'
-                      }`}
-                    >
-                      {project.number}
+                  {/* Accordion Row Header */}
+                  <div
+                    onClick={() => toggleExpand(project.id)}
+                    className={`flex items-center justify-between cursor-pointer select-none ${
+                      isExpanded ? 'pl-3 sm:pl-4 mb-5' : ''
+                    }`}
+                  >
+                    <div className="flex items-center gap-3.5 sm:gap-4">
+                      {/* Number Badge */}
+                      <div
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-colors ${
+                          isExpanded
+                            ? 'bg-[#4181f0] text-white shadow-md shadow-blue-500/30'
+                            : 'border border-[#4181f0] text-[#4181f0] bg-blue-950/40'
+                        }`}
+                      >
+                        {project.number}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">
+                        {project.title}
+                      </h3>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">
-                      {project.title}
-                    </h3>
+                    {/* Collapse / Expand Icon */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleExpand(project.id);
+                      }}
+                      className="p-1 text-slate-300 hover:text-white transition-colors"
+                      aria-label={isExpanded ? 'Collapse project details' : 'Expand project details'}
+                    >
+                      {isExpanded ? (
+                        <Minus className="w-5 h-5 text-slate-300 hover:text-white" />
+                      ) : (
+                        <Plus className="w-5 h-5 text-slate-400 hover:text-white" />
+                      )}
+                    </button>
                   </div>
 
-                  {/* Collapse / Expand Icon */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleExpand(project.id);
-                    }}
-                    className="p-1 text-slate-300 hover:text-white transition-colors"
-                    aria-label={isExpanded ? 'Collapse project details' : 'Expand project details'}
-                  >
-                    {isExpanded ? (
-                      <Minus className="w-5 h-5 text-slate-300 hover:text-white" />
-                    ) : (
-                      <Plus className="w-5 h-5 text-slate-400 hover:text-white" />
-                    )}
-                  </button>
-                </div>
+                  {/* Expanded Content Body */}
+                  {isExpanded && (
+                    <div className="pl-3 sm:pl-4 space-y-6 animate-fadeIn">
+                      {/* High Fidelity Banner Graphic (Full uncropped image display) */}
+                      <div
+                        onClick={() => onSelectImage?.(project.imageUrl, project.title)}
+                        className={`relative w-full rounded-xl overflow-hidden border border-blue-400/20 bg-[#0a0f1d] shadow-xl group/card ${
+                          onSelectImage ? 'cursor-pointer' : ''
+                        }`}
+                      >
+                        <img
+                          src={project.imageUrl}
+                          alt={project.title}
+                          className="w-full h-auto block object-contain"
+                          loading="lazy"
+                        />
+                        {onSelectImage && (
+                          <div className="absolute top-3 right-3 opacity-0 group-hover/card:opacity-100 transition-opacity bg-black/70 backdrop-blur-sm text-white text-xs px-2.5 py-1.5 rounded-lg border border-blue-400/30 flex items-center gap-1.5 shadow-lg pointer-events-none">
+                            <Eye className="w-3.5 h-3.5 text-blue-400" />
+                            <span>View Full Image</span>
+                          </div>
+                        )}
+                      </div>
 
-                {/* Expanded Content Body */}
-                {isExpanded && (
-                  <div className="pl-3 sm:pl-4 space-y-6 animate-fadeIn">
-                    {/* High Fidelity Banner Graphic (Full uncropped image display) */}
-                    <div
-                      onClick={() => onSelectImage?.(project.imageUrl, project.title)}
-                      className={`relative w-full rounded-xl overflow-hidden border border-blue-400/20 bg-[#0a0f1d] shadow-xl group/card ${
-                        onSelectImage ? 'cursor-pointer' : ''
-                      }`}
-                    >
-                      <img
-                        src={project.imageUrl}
-                        alt={project.title}
-                        className="w-full h-auto block object-contain"
-                        loading="lazy"
-                      />
-                      {onSelectImage && (
-                        <div className="absolute top-3 right-3 opacity-0 group-hover/card:opacity-100 transition-opacity bg-black/70 backdrop-blur-sm text-white text-xs px-2.5 py-1.5 rounded-lg border border-blue-400/30 flex items-center gap-1.5 shadow-lg pointer-events-none">
-                          <Eye className="w-3.5 h-3.5 text-blue-400" />
-                          <span>View Full Image</span>
+                      {/* Description and CTA Row */}
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
+                        <p className="text-slate-200 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-normal">
+                          {project.description}
+                        </p>
+
+                        <div className="flex-shrink-0">
+                          <a
+                            href={project.caseStudyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-950/80 hover:bg-[#4181f0] border border-blue-500/40 text-blue-300 hover:text-white transition-all text-xs sm:text-sm font-semibold group/btn cursor-pointer"
+                          >
+                            <span>View on Behance</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                          </a>
                         </div>
-                      )}
-                    </div>
-
-                    {/* Description and CTA Row */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
-                      <p className="text-slate-200 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-normal">
-                        {project.description}
-                      </p>
-
-                      <div className="flex-shrink-0">
-                        <a
-                          href={project.caseStudyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-[#38bdf8] hover:text-white transition-colors group"
-                        >
-                          <span>View Case Study</span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                        </a>
                       </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" width="100%" height="100%">
+  <defs>
+    <!-- Soft Watercolor Cloud Sky Background Gradient -->
+    <radialGradient id="skyGrad" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#EBF3F8"/>
+      <stop offset="80%" stop-color="#D7E6F2"/>
+      <stop offset="100%" stop-color="#C5DCEB"/>
+    </radialGradient>
+
+    <filter id="shadowFilter" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Sky Canvas -->
+  <rect width="900" height="900" fill="url(#skyGrad)"/>
+
+  <!-- Subtle Watercolor Sky Texture Wisps -->
+  <g opacity="0.3" fill="#B0CBE0">
+    <ellipse cx="250" cy="180" rx="180" ry="70" filter="blur(24px)"/>
+    <ellipse cx="700" cy="280" rx="160" ry="60" filter="blur(20px)"/>
+    <ellipse cx="450" cy="500" rx="280" ry="90" filter="blur(30px)"/>
+  </g>
+
+  <!-- Small Red Kite Floating High in the Sky (Top Right) -->
+  <g transform="translate(760, 140) rotate(15) scale(0.7)">
+    <polygon points="0,-60 45,0 0,60 -45,0" fill="#E53935"/>
+    <polygon points="0,60 15,90 -15,90" fill="#E53935"/>
+    <!-- String tail -->
+    <path d="M0 90 C15 130 -10 160 5 200" stroke="#E53935" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Top Left: "!diot Design Wala" Brand Logo -->
+  <g transform="translate(130, 65)">
+    <!-- Fedora Hat Silhouette -->
+    <path d="M-30 -10 C-35 -10 -40 -12 -50 -12 C-55 -12 -45 -22 -35 -24 C-35 -38 35 -38 35 -24 C45 -22 55 -12 50 -12 C40 -12 35 -10 30 -10 Z" fill="#111827"/>
+    <!-- Glasses & Mustache -->
+    <circle cx="-14" cy="2" r="9" stroke="#111827" stroke-width="3.5" fill="none"/>
+    <circle cx="14" cy="2" r="9" stroke="#111827" stroke-width="3.5" fill="none"/>
+    <line x1="-5" y1="2" x2="5" y2="2" stroke="#111827" stroke-width="3"/>
+    <!-- Pen nib on right -->
+    <path d="M75 -8 L85 10 L65 10 Z" fill="#111827"/>
+    <!-- Brand Name Text -->
+    <text x="10" y="32" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="19" font-weight="900" fill="#111827">!diot Design Wala</text>
+  </g>
+
+  <!-- Headline: "Happy Makar Sankranti OFFER" -->
+  <g transform="translate(450, 200)">
+    <!-- "Happy" in flowing script font -->
+    <text x="0" y="-30" text-anchor="middle" font-family="'Brush Script MT', 'Dancing Script', cursive, sans-serif" font-size="64" font-weight="bold" fill="#111827">Happy</text>
+    <!-- "Makar Sankranti" in regal bold blue serif -->
+    <text x="0" y="45" text-anchor="middle" font-family="'Times New Roman', 'Playfair Display', serif" font-size="68" font-weight="900" fill="#1E3A8A" letter-spacing="1">Makar Sankranti</text>
+    <!-- "OFFER" in deep blue bold display -->
+    <text x="0" y="115" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="64" font-weight="900" fill="#1E3A8A" letter-spacing="4">OFFER</text>
+  </g>
+
+  <!-- Center Kites Section -->
+  <g transform="translate(450, 480)">
+    <!-- 1. Left Blue Kite: "PS" (Photoshop) -->
+    <g transform="translate(-180, 0) scale(1.1)" filter="url(#shadowFilter)">
+      <polygon points="0,-90 70,0 0,90 -70,0" fill="#0284C7"/>
+      <path d="M0 -90 L0 90 M-70 0 L70 0" stroke="#0369A1" stroke-width="2"/>
+      <polygon points="0,90 25,125 -25,125" fill="#0284C7"/>
+      <text x="0" y="15" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="44" font-weight="900" fill="#FFFFFF">PS</text>
+    </g>
+
+    <!-- 2. Center Gold/Black Kite: "Ai" (Illustrator) with computer mouse cable -->
+    <g transform="translate(0, -40) scale(1.2)" filter="url(#shadowFilter)">
+      <polygon points="0,-100 80,0 0,100 -80,0" fill="#3E2723"/>
+      <path d="M0 -100 L0 100 M-80 0 L80 0" stroke="#271916" stroke-width="2"/>
+      <polygon points="0,100 30,140 -30,140" fill="#3E2723"/>
+      <text x="-16" y="18" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="52" font-weight="900" fill="#FFB300">A</text>
+      <text x="24" y="18" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="48" font-weight="900" fill="#FFB300">i</text>
+    </g>
+
+    <!-- Optical Computer Mouse & Cable attached to Ai Kite -->
+    <path d="M0 125 C20 180 120 170 120 220 C120 250 150 250 160 260" stroke="#111827" stroke-width="3" fill="none"/>
+    <!-- Mouse body -->
+    <g transform="translate(160, 275) rotate(25)" filter="url(#shadowFilter)">
+      <rect x="-18" y="-28" width="36" height="56" rx="18" fill="#1F2937"/>
+      <line x1="0" y1="-28" x2="0" y2="-8" stroke="#4B5563" stroke-width="2"/>
+      <!-- Scroll wheel -->
+      <rect x="-3" y="-22" width="6" height="12" rx="3" fill="#9CA3AF"/>
+    </g>
+
+    <!-- 3. Right Green Kite: Pen nib / Hot-air balloon graphics -->
+    <g transform="translate(180, 0) scale(1.1)" filter="url(#shadowFilter)">
+      <polygon points="0,-90 70,0 0,90 -70,0" fill="#43A047"/>
+      <!-- Inner balloon curves -->
+      <path d="M0 -75 C-35 -20 -35 40 0 75 C35 40 35 -20 0 -75 Z" fill="#FFFFFF" opacity="0.9"/>
+      <line x1="0" y1="-75" x2="0" y2="75" stroke="#43A047" stroke-width="2"/>
+      <polygon points="0,90 25,125 -25,125" fill="#43A047"/>
+    </g>
+  </g>
+
+  <!-- Left Kite Spool (Firki) labeled "JOIN" -->
+  <g transform="translate(110, 710) rotate(-35)" filter="url(#shadowFilter)">
+    <!-- Wooden Spool Cylinder & Rods -->
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="#8D5B34" stroke-width="10" stroke-linecap="round"/>
+    <rect x="-35" y="-50" width="70" height="100" rx="6" fill="#E53935"/>
+    <text x="0" y="8" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="20" font-weight="900" fill="#FFFFFF">JOIN</text>
+  </g>
+
+  <!-- Right Kite Spool (Firki) labeled "NOW" -->
+  <g transform="translate(790, 710) rotate(35)" filter="url(#shadowFilter)">
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="#8D5B34" stroke-width="10" stroke-linecap="round"/>
+    <rect x="-35" y="-50" width="70" height="100" rx="6" fill="#E53935"/>
+    <text x="0" y="8" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="20" font-weight="900" fill="#FFFFFF">NOW</text>
+  </g>
+
+  <!-- Red Big Title: "GRAPHIC DESIGN COURSE" -->
+  <text x="450" y="765" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="62" font-weight="bold" fill="#DC2626" letter-spacing="2">GRAPHIC DESIGN COURSE</text>
+
+  <!-- Subtitle: "Special Offer for New Admissions" -->
+  <text x="450" y="810" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="26" font-weight="900" fill="#111827">Special Offer for New Admissions</text>
+
+  <!-- Bottom Dark Contact Bar -->
+  <g transform="translate(0, 840)">
+    <rect width="900" height="60" fill="#000000"/>
+    <text x="30" y="38" font-family="'Arial Black', sans-serif" font-size="16" font-weight="900" fill="#FFFFFF">Call / WhatsApp: +91 81415 17907</text>
+    <text x="870" y="30" text-anchor="end" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">411 Hilltowon Landmark opp Dash khman,</text>
+    <text x="870" y="46" text-anchor="end" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#E5E7EB">Nikol Naroda Road, Ahmedabad, Gujarat</text>
+  </g>
+</svg>

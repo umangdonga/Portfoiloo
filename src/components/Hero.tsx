@@ -2,14 +2,13 @@ import React from 'react';
 import { ArrowRight, Send, Download } from 'lucide-react';
 
 interface HeroProps {
-  photoUrl: string;
+  photoUrl?: string;
   behanceUrl: string;
   linkedinUrl: string;
   resumeUrl: string;
 }
 
 export const Hero: React.FC<HeroProps> = ({
-  photoUrl,
   behanceUrl,
   linkedinUrl,
   resumeUrl,
@@ -94,14 +93,13 @@ export const Hero: React.FC<HeroProps> = ({
 
               {/* Photo Frame Card */}
               <div className="relative rounded-3xl overflow-hidden border border-blue-500/30 bg-[#0d1322] shadow-2xl p-2.5 backdrop-blur-xl">
-                <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900">
+                <div className="relative aspect-[1126/1397] w-full rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center">
                   <img
-                    src={photoUrl}
+                    src="/image-1.png"
                     alt="Umang Donga - UI/UX Designer"
-                    className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-contain"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/70 via-transparent to-transparent pointer-events-none" />
                 </div>
 
                 {/* Role Card */}
