@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Minus, Plus } from 'lucide-react';
+import { ArrowRight, Eye, Minus, Plus } from 'lucide-react';
 
 interface ProjectItem {
   id: string;
@@ -10,7 +10,11 @@ interface ProjectItem {
   caseStudyUrl: string;
 }
 
-export const SelectedWorks: React.FC = () => {
+interface SelectedWorksProps {
+  onSelectImage?: (url: string, title: string) => void;
+}
+
+export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectImage }) => {
   // 01 is expanded by default to match image.png
   const [expandedId, setExpandedId] = useState<string | null>('01');
 
@@ -19,7 +23,7 @@ export const SelectedWorks: React.FC = () => {
       id: '01',
       number: '01',
       title: 'Univercity Campus App Design',
-      imageUrl: 'https://framerusercontent.com/images/1eNwBeFhmpXZlncNDPsZGqzG31k.png?width=1599&height=672',
+      imageUrl: 'https://framerusercontent.com/images/1eNwBeFhmpXZlncNDPsZGqzG31k.png',
       description:
         'Campus Connect is a student-focused app designed to make campus life simpler. It helps students easily find classrooms, labs, buildings, services, and other important campus facilities through one connected platform.',
       caseStudyUrl: 'https://www.behance.net/gallery/249721127/Campus-Connect-Smart-Campus-Navigation-App',
@@ -28,7 +32,7 @@ export const SelectedWorks: React.FC = () => {
       id: '02',
       number: '02',
       title: 'Indu Cafe app',
-      imageUrl: 'https://framerusercontent.com/images/lkJHmviV0GLgNvpcUKAT4sjAiLQ.png?width=1536&height=1024',
+      imageUrl: 'https://framerusercontent.com/images/lkJHmviV0GLgNvpcUKAT4sjAiLQ.png',
       description:
         'Indu Cafe is a student-focused food ordering app designed to make ordering food on campus quick, simple, and convenient. The app allows students to explore food categories, discover popular items, add meals to their cart, apply coupons, and place orders through an easy-to-use interface.',
       caseStudyUrl: 'https://www.behance.net/gallery/249721671/Innovation-A-Digital-Solution-for-Campus-Catering',
@@ -149,14 +153,25 @@ export const SelectedWorks: React.FC = () => {
                 {/* Expanded Content Body */}
                 {isExpanded && (
                   <div className="pl-3 sm:pl-4 space-y-6 animate-fadeIn">
-                    {/* High Fidelity Banner Graphic (exact Framer graphic matching image.png) */}
-                    <div className="relative w-full rounded-xl overflow-hidden border border-blue-400/20 bg-[#0a0f1d] shadow-xl">
+                    {/* High Fidelity Banner Graphic (Full uncropped image display) */}
+                    <div
+                      onClick={() => onSelectImage?.(project.imageUrl, project.title)}
+                      className={`relative w-full rounded-xl overflow-hidden border border-blue-400/20 bg-[#0a0f1d] shadow-xl group/card ${
+                        onSelectImage ? 'cursor-pointer' : ''
+                      }`}
+                    >
                       <img
                         src={project.imageUrl}
                         alt={project.title}
-                        className="w-full h-auto object-cover max-h-[500px]"
+                        className="w-full h-auto block object-contain"
                         loading="lazy"
                       />
+                      {onSelectImage && (
+                        <div className="absolute top-3 right-3 opacity-0 group-hover/card:opacity-100 transition-opacity bg-black/70 backdrop-blur-sm text-white text-xs px-2.5 py-1.5 rounded-lg border border-blue-400/30 flex items-center gap-1.5 shadow-lg pointer-events-none">
+                          <Eye className="w-3.5 h-3.5 text-blue-400" />
+                          <span>View Full Image</span>
+                        </div>
+                      )}
                     </div>
 
                     {/* Description and CTA Row */}

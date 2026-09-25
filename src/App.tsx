@@ -67,7 +67,7 @@ export default function App() {
         <DesignHighlights onSelectImage={handleOpenImage} />
 
         {/* Selected Works (Accordion matching image.png) */}
-        <SelectedWorks />
+        <SelectedWorks onSelectImage={handleOpenImage} />
 
         {/* Design Process */}
         <DesignProcess />

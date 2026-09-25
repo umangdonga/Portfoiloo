@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
-import { Send, Mail, CheckCircle2, Globe, User, MessageSquare } from 'lucide-react';
+import {
+  Send,
+  Mail,
+  CheckCircle2,
+  Globe,
+  User,
+  MessageSquare,
+  AlertCircle,
+  Loader2,
+} from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 interface ContactProps {
   cardImageUrl: string;
   email: string;
   behanceUrl: string;
   linkedinUrl: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
 }
 
 export const Contact: React.FC<ContactProps> = ({
@@ -20,57 +36,102 @@ export const Contact: React.FC<ContactProps> = ({
     websiteUrl: '',
     message: '',
   });
+
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Validate form fields according to requirements
+  const validateForm = (): boolean => {
+    const errors: FormErrors = {};
+
+    // 1. Name is required
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required.';
+    }
+
+    // 2. Email must be valid
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required.';
+    } else if (!emailRegex.test(formData.email.trim())) {
+      errors.email = 'Please enter a valid email address.';
+    }
+
+    // 3. Message is required
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required.';
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    // Clear error for field once user starts typing
+    if (formErrors[field as keyof FormErrors]) {
+      setFormErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+    if (errorMessage) {
+      setErrorMessage(null);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage(null);
+
+    // Run client-side validation
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
 
+    // Retrieve EmailJS configuration from environment variables
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${email}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          Name: formData.name,
-          Email: formData.email,
-          'Website / Link': formData.websiteUrl || 'Not provided',
-          Message: formData.message,
-          _subject: `New Portfolio Inquiry from ${formData.name}`,
-          _template: 'table',
-          _captcha: 'false',
-        }),
-      });
-
-      const data = await response.json().catch(() => null);
-
-      if (response.ok || (data && (data.success === 'true' || data.success === true))) {
-        setIsSubmitted(true);
-        setFormData({ name: '', email: '', websiteUrl: '', message: '' });
-      } else {
-        // Fallback to mailto link if external service is blocked
-        const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(
-          `Portfolio Inquiry from ${formData.name}`
-        )}&body=${encodeURIComponent(
-          `Name: ${formData.name}\nEmail: ${formData.email}\nWebsite: ${formData.websiteUrl || 'Not provided'}\n\nMessage:\n${formData.message}`
-        )}`;
-        window.location.href = mailtoUrl;
-        setIsSubmitted(true);
-        setFormData({ name: '', email: '', websiteUrl: '', message: '' });
+      if (!serviceId || !templateId || !publicKey) {
+        // Fallback / missing credentials notice
+        console.error(
+          'EmailJS environment variables (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY) are not set.'
+        );
+        setErrorMessage('Something went wrong. Please try again.');
+        return;
       }
-    } catch {
-      // In case of network blocker or offline, open default email client
-      const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(
-        `Portfolio Inquiry from ${formData.name}`
-      )}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\nWebsite: ${formData.websiteUrl || 'Not provided'}\n\nMessage:\n${formData.message}`
-      )}`;
-      window.location.href = mailtoUrl;
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', websiteUrl: '', message: '' });
+
+      // Template parameters sent to umangdonga98@gmail.com
+      const templateParams = {
+        name: formData.name.trim(),
+        from_name: formData.name.trim(),
+        email: formData.email.trim(),
+        from_email: formData.email.trim(),
+        reply_to: formData.email.trim(),
+        website: formData.websiteUrl.trim() || 'Not provided',
+        website_url: formData.websiteUrl.trim() || 'Not provided',
+        message: formData.message.trim(),
+        to_email: 'umangdonga98@gmail.com',
+      };
+
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      if (result.status === 200 || result.text === 'OK') {
+        setIsSubmitted(true);
+        // Clear form only after successful sending
+        setFormData({ name: '', email: '', websiteUrl: '', message: '' });
+        setFormErrors({});
+      } else {
+        setErrorMessage('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('EmailJS Submission Error:', error);
+      // Specific requirement: "If sending fails, show: 'Something went wrong. Please try again.'"
+      setErrorMessage('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -164,15 +225,19 @@ export const Contact: React.FC<ContactProps> = ({
                 <div className="w-16 h-16 rounded-full bg-blue-500/20 border border-[#4181f0] flex items-center justify-center text-[#4181f0] mx-auto shadow-lg shadow-blue-500/20">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Message Sent Successfully!</h3>
+                {/* Specific requirement 7: On successful submission, show: "Thank you! Your message has been sent successfully." */}
+                <h3 className="text-2xl font-bold text-white">Thank you! Your message has been sent successfully.</h3>
                 <p className="text-slate-300 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out! Your note has been delivered directly to{' '}
+                  Your message has been delivered to{' '}
                   <span className="text-[#4181f0] font-semibold">{email}</span>. I'll get back to you soon.
                 </p>
                 <div className="pt-2">
                   <button
                     type="button"
-                    onClick={() => setIsSubmitted(false)}
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setErrorMessage(null);
+                    }}
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-950/60 hover:bg-blue-900/60 border border-blue-500/30 text-blue-300 text-xs sm:text-sm font-semibold transition-all hover:scale-105"
                   >
                     Send another message
@@ -180,85 +245,125 @@ export const Contact: React.FC<ContactProps> = ({
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                {/* Error Banner */}
+                {errorMessage && (
+                  <div className="p-3.5 rounded-xl bg-red-950/40 border border-red-500/40 text-red-300 text-xs sm:text-sm flex items-center gap-2.5 shadow-sm">
+                    <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
+                {/* Name Field */}
                 <div>
                   <label htmlFor="name" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                    Name
+                    Name <span className="text-red-400">*</span>
                   </label>
                   <div className="relative">
                     <input
                       id="name"
                       type="text"
-                      required
                       placeholder="Your name"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 pl-11 rounded-xl bg-[#080c16] border border-[#2a3050] focus:border-[#4181f0] focus:outline-none focus:ring-1 focus:ring-[#4181f0] text-white placeholder-slate-500 text-sm transition-all"
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      className={`w-full px-4 py-3.5 pl-11 rounded-xl bg-[#080c16] border ${
+                        formErrors.name ? 'border-red-500/80 focus:border-red-500' : 'border-[#2a3050] focus:border-[#4181f0]'
+                      } focus:outline-none focus:ring-1 ${
+                        formErrors.name ? 'focus:ring-red-500' : 'focus:ring-[#4181f0]'
+                      } text-white placeholder-slate-500 text-sm transition-all`}
                     />
                     <User className="w-4 h-4 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
+                  {formErrors.name && (
+                    <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
+                      <span>{formErrors.name}</span>
+                    </p>
+                  )}
                 </div>
 
+                {/* Email Field */}
                 <div>
                   <label htmlFor="email" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                    Email
+                    Email <span className="text-red-400">*</span>
                   </label>
                   <div className="relative">
                     <input
                       id="email"
                       type="email"
-                      required
                       placeholder="Your email address"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 pl-11 rounded-xl bg-[#080c16] border border-[#2a3050] focus:border-[#4181f0] focus:outline-none focus:ring-1 focus:ring-[#4181f0] text-white placeholder-slate-500 text-sm transition-all"
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className={`w-full px-4 py-3.5 pl-11 rounded-xl bg-[#080c16] border ${
+                        formErrors.email ? 'border-red-500/80 focus:border-red-500' : 'border-[#2a3050] focus:border-[#4181f0]'
+                      } focus:outline-none focus:ring-1 ${
+                        formErrors.email ? 'focus:ring-red-500' : 'focus:ring-[#4181f0]'
+                      } text-white placeholder-slate-500 text-sm transition-all`}
                     />
                     <Mail className="w-4 h-4 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
+                  {formErrors.email && (
+                    <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
+                      <span>{formErrors.email}</span>
+                    </p>
+                  )}
                 </div>
 
+                {/* Website Url (Optional) */}
                 <div>
                   <label htmlFor="website" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                    Website Url
+                    Website Url <span className="text-slate-500 text-[11px] font-normal lowercase">(optional)</span>
                   </label>
                   <div className="relative">
                     <input
                       id="website"
                       type="url"
-                      placeholder="https://yourwebsite.com (optional)"
+                      placeholder="https://yourwebsite.com"
                       value={formData.websiteUrl}
-                      onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                      onChange={(e) => handleInputChange('websiteUrl', e.target.value)}
                       className="w-full px-4 py-3.5 pl-11 rounded-xl bg-[#080c16] border border-[#2a3050] focus:border-[#4181f0] focus:outline-none focus:ring-1 focus:ring-[#4181f0] text-white placeholder-slate-500 text-sm transition-all"
                     />
                     <Globe className="w-4 h-4 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
                 </div>
 
+                {/* Message Field */}
                 <div>
                   <label htmlFor="message" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                    Message
+                    Message <span className="text-red-400">*</span>
                   </label>
                   <div className="relative">
                     <textarea
                       id="message"
                       rows={4}
-                      required
                       placeholder="Tell me about your project or inquiry..."
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3.5 pl-11 rounded-xl bg-[#080c16] border border-[#2a3050] focus:border-[#4181f0] focus:outline-none focus:ring-1 focus:ring-[#4181f0] text-white placeholder-slate-500 text-sm transition-all resize-none"
+                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      className={`w-full px-4 py-3.5 pl-11 rounded-xl bg-[#080c16] border ${
+                        formErrors.message ? 'border-red-500/80 focus:border-red-500' : 'border-[#2a3050] focus:border-[#4181f0]'
+                      } focus:outline-none focus:ring-1 ${
+                        formErrors.message ? 'focus:ring-red-500' : 'focus:ring-[#4181f0]'
+                      } text-white placeholder-slate-500 text-sm transition-all resize-none`}
                     />
                     <MessageSquare className="w-4 h-4 text-slate-500 absolute left-4 top-4 pointer-events-none" />
                   </div>
+                  {formErrors.message && (
+                    <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
+                      <span>{formErrors.message}</span>
+                    </p>
+                  )}
                 </div>
 
+                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#4181f0] to-[#2563eb] hover:from-[#3575e6] hover:to-[#1d4ed8] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-500/25 transition-all duration-200 hover:scale-[1.01] active:scale-98 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#4181f0] to-[#2563eb] hover:from-[#3575e6] hover:to-[#1d4ed8] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-500/25 transition-all duration-200 hover:scale-[1.01] active:scale-98 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {isSubmitting ? (
-                    <span>Submitting...</span>
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>Sending message...</span>
+                    </>
                   ) : (
                     <>
                       <span>Submit</span>

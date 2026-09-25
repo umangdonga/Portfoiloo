@@ -19,9 +19,10 @@ export const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
 
   const navLinks = [
     { name: 'Home', href: '#about-me' },
-    { name: 'About me', href: '#about-me' },
     { name: 'Work', href: '#work' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Tools', href: '#tools' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
