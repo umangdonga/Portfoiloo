@@ -16,20 +16,12 @@ export const DesignHighlights: React.FC<DesignHighlightsProps> = ({ onSelectImag
       title: 'Dashboard & Interface Design',
     },
     {
-      url: 'https://framerusercontent.com/images/49eBVk9RXi5vtJUZEGfV4pIr1vY.png?width=1536&height=1024',
-      title: 'App Interface Screen Flow',
-    },
-    {
       url: 'https://framerusercontent.com/images/moflpuJBkERHKJnEB24gYrGQY.png?width=1536&height=1024',
       title: 'Visual Architecture & Flow',
     },
     {
       url: 'https://framerusercontent.com/images/25wCZ7TlteJaZY10bDyzixKco.png?width=1097&height=663',
       title: 'Digital Experience Concept',
-    },
-    {
-      url: 'https://framerusercontent.com/images/WyIHe79HMbS3YWnejsVgBybs.png?width=1552&height=1013',
-      title: 'High Fidelity UI Mockup',
     },
   ];
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Send, Download } from 'lucide-react';
+import { ArrowRight, Send } from 'lucide-react';
 
 interface HeroProps {
   photoUrl?: string;
@@ -63,16 +63,6 @@ export const Hero: React.FC<HeroProps> = ({
               >
                 <span>View My Work</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-
-              <a
-                href={resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-blue-950/70 hover:bg-blue-900/70 border border-blue-500/40 text-blue-200 hover:text-white font-medium text-sm sm:text-base shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-95"
-              >
-                <Download className="w-4 h-4 text-[#4181f0]" />
-                <span>Download Resume</span>
               </a>
 
               <a
