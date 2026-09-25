@@ -5,6 +5,7 @@
     background-color: #080808;
     color: #ffffff;
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -87,4 +88,253 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #4181f0;
+}
+
+/* ==========================================================================
+   LIGHT MODE DESIGN SYSTEM
+   Clean, modern, crisp architectural theme styling
+   ========================================================================== */
+
+html.light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Page canvas backgrounds */
+html.light .bg-\[\#080808\] {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Navbar */
+html.light header.bg-\[\#080808\]\/92 {
+  background-color: rgba(248, 250, 252, 0.92) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light nav.bg-\[\#0d1326\],
+html.light .bg-\[\#0d1326\] {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.02) !important;
+}
+
+html.light nav a.text-slate-300 {
+  color: #475569 !important;
+}
+html.light nav a.text-slate-300:hover {
+  color: #0f172a !important;
+}
+
+html.light .glass-nav {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 12px 36px -8px rgba(15, 23, 42, 0.12) !important;
+}
+
+/* Cards & Surfaces */
+html.light .bg-\[\#0d1322\]\/80,
+html.light .bg-\[\#0d1322\]\/85,
+html.light .bg-\[\#0d1322\],
+html.light .bg-\[\#090d18\],
+html.light .bg-\[\#0c101c\],
+html.light .bg-\[\#0c101c\]\/70,
+html.light .glow-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03) !important;
+}
+
+html.light .border-\[\#2a3050\],
+html.light .border-\[\#2e3b66\] {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .border-slate-800\/80,
+html.light .border-slate-800,
+html.light .border-slate-700\/80 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Typography in light mode */
+html.light h1.text-white,
+html.light h2.text-white,
+html.light h3.text-white,
+html.light h4.text-white,
+html.light .text-white:not(
+  .keep-white,
+  button *,
+  .bg-gradient-to-r *,
+  .bg-\[\#4181f0\] *,
+  .bg-blue-600 *
+) {
+  color: #0f172a !important;
+}
+
+html.light p.text-slate-300,
+html.light span.text-slate-300,
+html.light div.text-slate-300 {
+  color: #475569 !important;
+}
+
+html.light p.text-slate-400,
+html.light span.text-slate-400,
+html.light div.text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light p.text-slate-200,
+html.light span.text-slate-200 {
+  color: #1e293b !important;
+}
+
+html.light .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+/* Badges, Chips & Icon Boxes */
+html.light .bg-blue-950\/60,
+html.light .bg-blue-950\/70,
+html.light .bg-blue-950\/80,
+html.light .bg-blue-950\/40,
+html.light .bg-blue-950\/30,
+html.light .bg-blue-950\/20 {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+  color: #1d4ed8 !important;
+}
+
+html.light .bg-indigo-950\/80 {
+  background-color: #eef2ff !important;
+  border-color: #c7d2fe !important;
+  color: #4338ca !important;
+}
+
+html.light .bg-purple-950\/80 {
+  background-color: #faf5ff !important;
+  border-color: #e9d5ff !important;
+  color: #7e22ce !important;
+}
+
+html.light .bg-emerald-950\/80 {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+
+html.light .bg-slate-900 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+html.light .bg-slate-950 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/60 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+html.light .bg-slate-900\/40 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-800\/50,
+html.light button.bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* Selected Works Accordion */
+html.light .bg-\[\#080d19\] {
+  background-color: #f8fafc !important;
+  border-color: #bfdbfe !important;
+}
+
+html.light .bg-\[\#0a0f1d\] {
+  background-color: #f1f5f9 !important;
+}
+
+/* Hero Section additions */
+html.light .bg-\[\#141b2d\]\/90 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Tools Section additions */
+html.light .bg-\[\#182035\] {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light .bg-\[\#00172c\] {
+  background-color: #f0f9ff !important;
+  border-color: #bae6fd !important;
+}
+
+/* Contact form inputs */
+html.light .bg-\[\#080c16\],
+html.light .bg-\[\#080d1a\],
+html.light input,
+html.light textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light input:focus,
+html.light textarea:focus {
+  background-color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+}
+
+/* Footer */
+html.light footer.bg-\[\#04070f\],
+html.light footer {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light footer .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light footer .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Edge Gradients in Light Mode */
+html.light .from-\[\#080808\] {
+  --tw-gradient-from: #f8fafc var(--tw-gradient-from-position) !important;
+}
+
+/* Ticker Marquee in light mode */
+html.light .border-y.border-slate-800,
+html.light .border-y.border-\[\#2a3050\] {
+  border-color: #e2e8f0 !important;
+  background-color: #ffffff !important;
 }

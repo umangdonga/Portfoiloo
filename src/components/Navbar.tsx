@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavbarProps {
   resumeUrl: string;
@@ -62,27 +63,33 @@ export const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
             ))}
           </div>
 
-          {/* Download Resume Button - opens resume link directly */}
-          <div className="hidden sm:flex items-center">
-            <a
-              href={resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-5 py-2 text-xs md:text-sm font-medium text-white bg-gradient-to-r from-[#4181f0] to-[#2563eb] hover:from-[#3575e6] hover:to-[#1d4ed8] rounded-full shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-95 border border-blue-400/30"
-            >
-              <span>Download Resume</span>
-              <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-            </a>
-          </div>
+          {/* Right Action Controls: Theme Switcher & Resume Button */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* Light / Dark Mode Switch */}
+            <ThemeToggle />
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-slate-300 hover:text-white rounded-full bg-slate-800/50 border border-slate-700/50"
-            aria-label="Toggle Navigation Menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+            {/* Download Resume Button - opens resume link directly */}
+            <div className="hidden sm:flex items-center">
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2 px-5 py-2 text-xs md:text-sm font-medium text-white bg-gradient-to-r from-[#4181f0] to-[#2563eb] hover:from-[#3575e6] hover:to-[#1d4ed8] rounded-full shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-95 border border-blue-400/30"
+              >
+                <span>Download Resume</span>
+                <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+              </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-slate-300 hover:text-white rounded-full bg-slate-800/50 border border-slate-700/50"
+              aria-label="Toggle Navigation Menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Dropdown Menu */}
@@ -98,6 +105,12 @@ export const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
                 {link.name}
               </a>
             ))}
+
+            <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between px-2">
+              <span className="text-sm font-medium text-slate-300">Appearance</span>
+              <ThemeToggle showLabel />
+            </div>
+
             <a
               href={resumeUrl}
               target="_blank"

@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from 'react';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Ticker } from './components/Ticker';
@@ -18,7 +19,8 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ImageModal } from './components/ImageModal';
 
-export default function App() {
+function PortfolioContent() {
+  const { theme } = useTheme();
   const [modalImage, setModalImage] = useState<{ url: string; title: string } | null>(null);
 
   const RESUME_URL = import.meta.env.VITE_RESUME_URL || '/Umang_Donga_Resume.pdf';
@@ -39,7 +41,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white selection:bg-[#4181f0] selection:text-white">
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        theme === 'light' ? 'bg-[#f8fafc] text-slate-900' : 'bg-[#080808] text-white'
+      } selection:bg-[#4181f0] selection:text-white`}
+    >
       {/* Top Navbar */}
       <Navbar resumeUrl={RESUME_URL} />
 
@@ -63,7 +69,7 @@ export default function App() {
         {/* Design Highlights Gallery */}
         <DesignHighlights onSelectImage={handleOpenImage} />
 
-        {/* Selected Works (Accordion matching image.png) */}
+        {/* Selected Works (Accordion) */}
         <SelectedWorks onSelectImage={handleOpenImage} />
 
         {/* Design Process */}
@@ -98,5 +104,13 @@ export default function App() {
         onClose={handleCloseModal}
       />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <PortfolioContent />
+    </ThemeProvider>
   );
 }
