@@ -15,7 +15,7 @@ interface SelectedWorksProps {
 }
 
 export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectImage }) => {
-  // 01 is expanded by default to match image.png
+  // 01 is expanded by default
   const [expandedId, setExpandedId] = useState<string | null>('01');
 
   const projects: ProjectItem[] = [
@@ -71,10 +71,10 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectImage }) =
   };
 
   return (
-    <section id="work" className="relative py-24 px-4 sm:px-6 md:px-8 border-t border-slate-900">
+    <section id="work" className="relative py-16 sm:py-24 px-3 sm:px-6 md:px-8 border-t border-slate-900">
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-2.5 sm:space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
             <span>Portfolio</span>
           </div>
@@ -87,31 +87,31 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectImage }) =
         </div>
 
         {/* Selected Works Container Card */}
-        <div className="rounded-3xl p-4 sm:p-8 md:p-10 bg-[#0d1322]/80 border border-[#2a3050] shadow-2xl backdrop-blur-xl">
-          <div className="space-y-4">
+        <div className="rounded-2xl sm:rounded-3xl p-2.5 sm:p-6 md:p-10 bg-[#0d1322]/80 border border-[#2a3050] shadow-2xl backdrop-blur-xl">
+          <div className="space-y-3 sm:space-y-4">
             {projects.map((project) => {
               const isExpanded = expandedId === project.id;
 
               return (
                 <div
                   key={project.id}
-                  className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  className={`rounded-xl sm:rounded-2xl border transition-all duration-300 overflow-hidden ${
                     isExpanded
-                      ? 'bg-[#080d19] border-blue-500/40 shadow-lg shadow-blue-500/10 p-5 sm:p-6'
-                      : 'bg-slate-900/40 border-slate-800/80 hover:border-blue-500/30 p-4 sm:p-5'
+                      ? 'bg-[#080d19] border-blue-500/40 shadow-lg shadow-blue-500/10 p-3.5 sm:p-5 md:p-6'
+                      : 'bg-slate-900/40 border-slate-800/80 hover:border-blue-500/30 p-3 sm:p-4 md:p-5'
                   }`}
                 >
                   {/* Accordion Row Header */}
                   <div
                     onClick={() => toggleExpand(project.id)}
-                    className={`flex items-center justify-between cursor-pointer select-none ${
-                      isExpanded ? 'pl-3 sm:pl-4 mb-5' : ''
+                    className={`flex items-center justify-between cursor-pointer select-none gap-2 sm:gap-4 ${
+                      isExpanded ? 'mb-4 sm:mb-5' : ''
                     }`}
                   >
-                    <div className="flex items-center gap-3.5 sm:gap-4">
+                    <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
                       {/* Number Badge */}
                       <div
-                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-colors ${
+                        className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-sm font-bold shrink-0 transition-colors ${
                           isExpanded
                             ? 'bg-[#4181f0] text-white shadow-md shadow-blue-500/30'
                             : 'border border-[#4181f0] text-[#4181f0] bg-blue-950/40'
@@ -121,35 +121,36 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectImage }) =
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">
+                      <h3 className="text-sm sm:text-base md:text-xl font-bold text-white tracking-tight truncate sm:whitespace-normal">
                         {project.title}
                       </h3>
                     </div>
 
                     {/* Collapse / Expand Icon */}
                     <button
+                      type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         toggleExpand(project.id);
                       }}
-                      className="p-1 text-slate-300 hover:text-white transition-colors"
+                      className="p-1 sm:p-1.5 text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors shrink-0"
                       aria-label={isExpanded ? 'Collapse project details' : 'Expand project details'}
                     >
                       {isExpanded ? (
-                        <Minus className="w-5 h-5 text-slate-300 hover:text-white" />
+                        <Minus className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
                       ) : (
-                        <Plus className="w-5 h-5 text-slate-400 hover:text-white" />
+                        <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400" />
                       )}
                     </button>
                   </div>
 
                   {/* Expanded Content Body */}
                   {isExpanded && (
-                    <div className="pl-3 sm:pl-4 space-y-6 animate-fadeIn">
-                      {/* High Fidelity Banner Graphic (Full uncropped image display) */}
+                    <div className="space-y-4 sm:space-y-6 animate-fadeIn">
+                      {/* High Fidelity Banner Graphic */}
                       <div
                         onClick={() => onSelectImage?.(project.imageUrl, project.title)}
-                        className={`relative w-full rounded-xl overflow-hidden border border-blue-400/20 bg-[#0a0f1d] shadow-xl group/card ${
+                        className={`relative w-full rounded-lg sm:rounded-xl overflow-hidden border border-blue-400/20 bg-[#0a0f1d] shadow-xl group/card ${
                           onSelectImage ? 'cursor-pointer' : ''
                         }`}
                       >
@@ -160,28 +161,28 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectImage }) =
                           loading="lazy"
                         />
                         {onSelectImage && (
-                          <div className="absolute top-3 right-3 opacity-0 group-hover/card:opacity-100 transition-opacity bg-black/70 backdrop-blur-sm text-white text-xs px-2.5 py-1.5 rounded-lg border border-blue-400/30 flex items-center gap-1.5 shadow-lg pointer-events-none">
-                            <Eye className="w-3.5 h-3.5 text-blue-400" />
-                            <span>View Full Image</span>
+                          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 opacity-90 sm:opacity-0 group-hover/card:opacity-100 transition-opacity bg-black/75 backdrop-blur-sm text-white text-[10px] sm:text-xs px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-md sm:rounded-lg border border-blue-400/30 flex items-center gap-1 sm:gap-1.5 shadow-lg pointer-events-none">
+                            <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-400" />
+                            <span>Preview</span>
                           </div>
                         )}
                       </div>
 
                       {/* Description and CTA Row */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 pt-1 sm:pt-2">
                         <p className="text-slate-200 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-normal">
                           {project.description}
                         </p>
 
-                        <div className="flex-shrink-0">
+                        <div className="shrink-0 w-full sm:w-auto">
                           <a
                             href={project.caseStudyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-950/80 hover:bg-[#4181f0] border border-blue-500/40 text-blue-300 hover:text-white transition-all text-xs sm:text-sm font-semibold group/btn cursor-pointer"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-blue-950/80 hover:bg-[#4181f0] border border-blue-500/40 text-blue-300 hover:text-white transition-all text-xs sm:text-sm font-semibold active:scale-98"
                           >
                             <span>View on Behance</span>
-                            <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                            <ArrowRight className="w-3.5 h-3.5" />
                           </a>
                         </div>
                       </div>

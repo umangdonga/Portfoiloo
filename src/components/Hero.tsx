@@ -5,33 +5,32 @@ interface HeroProps {
   photoUrl?: string;
   behanceUrl: string;
   linkedinUrl: string;
-  resumeUrl: string;
+  resumeUrl?: string;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   behanceUrl,
   linkedinUrl,
-  resumeUrl,
 }) => {
   return (
-    <section id="about-me" className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section id="about-me" className="relative pt-24 pb-14 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 md:px-8 overflow-hidden">
       {/* Subtle Background Glows */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Bio & Intro */}
-          <div className="lg:col-span-7 flex flex-col items-start space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
+          <div className="lg:col-span-7 flex flex-col items-start space-y-5 sm:space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
               <span>About Me</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
               I’m <span className="text-[#4181f0] drop-shadow-[0_0_25px_rgba(65,129,240,0.4)]">Umang Donga</span>
             </h1>
 
-            <div className="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed font-normal">
+            <div className="space-y-3.5 sm:space-y-4 text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed font-normal">
               <p>
                 Hi, I’m Umang, a <span className="text-white font-medium">UI/UX Designer</span> and{' '}
                 <span className="text-white font-medium">M.Des student</span> passionate about creating simple,
@@ -55,11 +54,11 @@ export const Hero: React.FC<HeroProps> = ({
               </p>
             </div>
 
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
+            {/* Action Buttons - full width stacked on mobile, row on tablet/desktop */}
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href="#work"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#4181f0] to-[#2563eb] hover:from-[#3575e6] hover:to-[#1d4ed8] text-white font-medium text-sm sm:text-base shadow-lg shadow-blue-500/30 transition-all duration-200 hover:scale-[1.02] active:scale-95 group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#4181f0] to-[#2563eb] hover:from-[#3575e6] hover:to-[#1d4ed8] text-white font-semibold text-sm sm:text-base shadow-lg shadow-blue-500/30 transition-all duration-200 active:scale-95 group text-center"
               >
                 <span>View My Work</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -67,7 +66,7 @@ export const Hero: React.FC<HeroProps> = ({
 
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-slate-900/80 hover:bg-slate-800/80 border border-slate-700/80 hover:border-blue-500/50 text-slate-200 hover:text-white font-medium text-sm sm:text-base transition-all duration-200 hover:scale-[1.02] active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-slate-900/80 hover:bg-slate-800/80 border border-slate-700/80 hover:border-blue-500/50 text-slate-200 hover:text-white font-medium text-sm sm:text-base transition-all duration-200 active:scale-95 text-center"
               >
                 <Send className="w-4 h-4 text-[#4181f0]" />
                 <span>Let's Connect</span>
@@ -76,13 +75,13 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* Right Column: Photo Frame & Role Card */}
-          <div className="lg:col-span-5 flex flex-col items-center">
-            <div className="relative w-full max-w-sm sm:max-w-md">
+          <div className="lg:col-span-5 flex flex-col items-center w-full">
+            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
               {/* Violet Glow behind photo */}
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/30 via-blue-600/40 to-cyan-500/20 rounded-3xl blur-2xl -z-10 scale-95" />
 
               {/* Photo Frame Card */}
-              <div className="relative rounded-3xl overflow-hidden border border-blue-500/30 bg-[#0d1322] shadow-2xl p-2.5 backdrop-blur-xl">
+              <div className="relative rounded-3xl overflow-hidden border border-blue-500/30 bg-[#0d1322] shadow-2xl p-2 sm:p-2.5 backdrop-blur-xl">
                 <div className="relative aspect-[1126/1397] w-full rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center">
                   <img
                     src="/image-1.png"
@@ -93,19 +92,19 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
 
                 {/* Role Card */}
-                <div className="mt-3 px-4 py-3 rounded-xl bg-[#141b2d]/90 border border-blue-500/20 flex items-center justify-between">
+                <div className="mt-2.5 sm:mt-3 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-[#141b2d]/90 border border-blue-500/20 flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-blue-400 font-semibold uppercase tracking-wider">Role</p>
-                    <p className="text-sm font-bold text-white">Product UI/UX Designer</p>
+                    <p className="text-[11px] sm:text-xs text-blue-400 font-semibold uppercase tracking-wider">Role</p>
+                    <p className="text-xs sm:text-sm font-bold text-white">Product UI/UX Designer</p>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     {/* Behance Link */}
                     <a
                       href={behanceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-blue-950/60 hover:bg-blue-600/30 text-[#4181f0] hover:text-white border border-blue-500/30 transition-all hover:scale-110 shadow-sm"
+                      className="p-2 sm:p-2.5 rounded-xl bg-blue-950/60 hover:bg-blue-600/30 text-[#4181f0] hover:text-white border border-blue-500/30 transition-all active:scale-95 shadow-sm"
                       title="Umang Donga on Behance"
                       aria-label="Behance Profile"
                     >
@@ -119,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({
                       href={linkedinUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-blue-950/60 hover:bg-blue-600/30 text-[#4181f0] hover:text-white border border-blue-500/30 transition-all hover:scale-110 shadow-sm"
+                      className="p-2 sm:p-2.5 rounded-xl bg-blue-950/60 hover:bg-blue-600/30 text-[#4181f0] hover:text-white border border-blue-500/30 transition-all active:scale-95 shadow-sm"
                       title="Umang Donga on LinkedIn"
                       aria-label="LinkedIn Profile"
                     >

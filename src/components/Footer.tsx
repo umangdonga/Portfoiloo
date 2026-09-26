@@ -7,15 +7,15 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ behanceUrl, linkedinUrl }) => {
   return (
-    <footer className="relative border-t border-[#2a3050] bg-[#060810] pt-16 pb-20 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <footer className="relative border-t border-[#2a3050] bg-[#060810] pt-12 pb-16 sm:pt-16 sm:pb-20 px-4 sm:px-6 md:px-8 overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 sm:w-96 h-28 sm:h-32 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto flex flex-col items-center space-y-8 text-center">
+      <div className="max-w-6xl mx-auto flex flex-col items-center space-y-6 sm:space-y-8 text-center">
         {/* Brand Name */}
         <a
           href="#"
-          className="font-bold tracking-tight text-2xl md:text-3xl text-white hover:text-[#4181f0] transition-colors"
+          className="font-bold tracking-tight text-xl sm:text-2xl md:text-3xl text-white hover:text-[#4181f0] transition-colors"
         >
           Umang Donga
         </a>
@@ -27,7 +27,7 @@ export const Footer: React.FC<FooterProps> = ({ behanceUrl, linkedinUrl }) => {
         </div>
 
         {/* Quick Nav & Socials */}
-        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400">
+        <div className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-6 text-xs sm:text-sm text-slate-400">
           <a href="#" className="hover:text-white transition-colors">
             Home
           </a>
@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ behanceUrl, linkedinUrl }) => {
         </div>
 
         {/* Copyright */}
-        <p className="text-xs text-slate-500 pt-4">
+        <p className="text-[11px] sm:text-xs text-slate-500 pt-2 sm:pt-4">
           © {new Date().getFullYear()} Umang Donga. All rights reserved.
         </p>
       </div>
