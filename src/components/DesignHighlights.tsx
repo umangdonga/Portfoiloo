@@ -2,26 +2,22 @@ import React from 'react';
 import { Eye } from 'lucide-react';
 
 interface DesignHighlightsProps {
-  onSelectImage: (url: string, title: string) => void;
+  onSelectImage: (url: string, title?: string) => void;
 }
 
 export const DesignHighlights: React.FC<DesignHighlightsProps> = ({ onSelectImage }) => {
   const screens = [
     {
       url: 'https://framerusercontent.com/images/FrwvfXzErWrQB9e6BO0MT7q5ys.png?width=1536&height=1024',
-      title: 'Mobile App Experience 1',
     },
     {
       url: 'https://framerusercontent.com/images/pOz6lJhmLBSbggr9oxDVrJcjHU.png?width=1536&height=1024',
-      title: 'Dashboard & Interface Design',
     },
     {
       url: 'https://framerusercontent.com/images/moflpuJBkERHKJnEB24gYrGQY.png?width=1536&height=1024',
-      title: 'Visual Architecture & Flow',
     },
     {
       url: 'https://framerusercontent.com/images/25wCZ7TlteJaZY10bDyzixKco.png?width=1097&height=663',
-      title: 'Digital Experience Concept',
     },
   ];
 
@@ -50,13 +46,13 @@ export const DesignHighlights: React.FC<DesignHighlightsProps> = ({ onSelectImag
           {[...screens, ...screens].map((item, idx) => (
             <div
               key={idx}
-              onClick={() => onSelectImage(item.url, item.title)}
+              onClick={() => onSelectImage(item.url, '')}
               className="group relative w-64 sm:w-80 md:w-96 shrink-0 rounded-2xl overflow-hidden border border-[#2a3050] bg-[#0c101c] p-1.5 sm:p-2 hover:border-[#4181f0] transition-all duration-300 cursor-pointer shadow-xl hover:shadow-blue-500/20 active:scale-98"
             >
               <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-slate-900">
                 <img
                   src={item.url}
-                  alt={item.title}
+                  alt="Design Highlight"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />

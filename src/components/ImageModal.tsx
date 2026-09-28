@@ -42,10 +42,16 @@ export const ImageModal: React.FC<ImageModalProps> = ({
         className="relative max-w-5xl max-h-[92vh] sm:max-h-[90vh] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#0c101c] border border-blue-500/30 shadow-2xl flex flex-col"
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-[#2a3050] bg-[#0d1322]">
-          <h4 className="text-xs sm:text-base font-semibold text-white truncate pr-3">
-            {title || 'Preview'}
-          </h4>
+        <div
+          className={`flex items-center ${
+            title && title.trim().length > 0 ? 'justify-between' : 'justify-end'
+          } px-4 sm:px-6 py-2.5 sm:py-3.5 border-b border-[#2a3050] bg-[#0d1322]`}
+        >
+          {title && title.trim().length > 0 && (
+            <h4 className="text-xs sm:text-base font-semibold text-white truncate pr-3">
+              {title}
+            </h4>
+          )}
           <button
             onClick={onClose}
             className="p-1 sm:p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors shrink-0"
